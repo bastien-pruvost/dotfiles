@@ -10,7 +10,7 @@ fi
 export PATH="$HOME/bin:$PATH"
 
 # CUSTOM VARS
-export DEV="$HOME/Development"
+export DEV="$HOME/dev"
 
 export PROJECTS="$DEV/projects"
 export TOOLS="$DEV/tools"
@@ -45,7 +45,7 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 # POWERLEVEL10K CONFIG
-source "$HOME/.p10k.zsh"
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # HOMEBREW CONFIG
 export HOMEBREW_UPGRADE_GREEDY=1
