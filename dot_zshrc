@@ -66,7 +66,10 @@ export ANDROID_EMULATOR="$ANDROID_HOME/emulator"
 
 export PATH="$PATH:$ANDROID_PLATFORM_TOOLS:$ANDROID_EMULATOR"
 
+
 # CUSTOM FUNCTIONS
+
+# cleanup local git branches that are not on remote
 delete_localonly_git_branches () {
   git fetch --prune
 
@@ -78,10 +81,12 @@ delete_localonly_git_branches () {
   done
 }
 
-# CUSTOM ALIASES
+# FUNCTIONS ALIASES
 alias cleanupbranches="delete_localonly_git_branches"
 
-# get machine's ip address
+
+# CUSTOM ALIASES
+
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
 
 alias zshconfig="code ~/.zshrc"
@@ -92,11 +97,14 @@ alias sshfolder="cd ~/.ssh"
 
 alias gitconfig="code ~/.gitconfig"
 
-alias gits="git status"
-alias gitd="git diff"
-alias gitl="git lg"
-alias gita="git add ."
-alias gitc="cz commit"
+alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window $@"
+
+alias hosts="code /etc/hosts"
+
+alias httpdhosts="code /usr/local/etc/httpd/extra/httpd-vhosts.conf"
+alias httpdconfig="code /usr/local/etc/httpd/httpd.conf"
+
+alias dnsmasqconfig="code /usr/local/etc/dnsmasq.conf"
 
 # alias p="pnpm"
 # alias pi="pnpm install"
@@ -106,9 +114,6 @@ alias gitc="cz commit"
 # alias ls='exa -a --group-directories-first'
 # alias ll='exa -l --icons --no-user --group-directories-first'
 # alias la='exa -la --icons --no-user --group-directories-first'
-
-# type sublime . to open current folder in Sublime Text
-alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window $@"
 
 
 # ------------------------------
