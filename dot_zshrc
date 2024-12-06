@@ -1,38 +1,42 @@
-# POWERLEVEL10K INSTANT PROMPT (Keep at the top of this file)
+# Powerlevel10k instant prompt (should stay at the top of this file)
 # Initialization code that may require console input/output must go above this block.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# ------------------------------
 
-# HOME BIN PATH
-export PATH="$HOME/bin:$PATH"
+# ---- CUSTOM VARIABLES ----
 
-# CUSTOM VARS
 export DEV="$HOME/dev"
 
 export PROJECTS="$DEV/projects"
 export TOOLS="$DEV/tools"
 export SCRIPTS="$DEV/scripts"
+export TEMP="$DEV/temp"
 
 export WORK="$PROJETS/work"
 export PERSONAL="$PROJETS/personal"
 export SANDBOX="$PROJETS/sandbox"
-export TEMP="$PROJECTS/temp"
 
-export DOTFILES="$(chezmoi source-path)"
+export DOTFILES="$(chezmoi source-path || echo $HOME/.local/share/chezmoi)"
 
-# GLOBAL CONFIG
+
+# ---- GLOBAL CONFIG ----
+
+# Language
 export LANG="en_US.UTF-8"
 
+# Default editor
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR="nano" # ssh
  else
    export EDITOR="code" # local
  fi
+ 
 
-# OH-MY-ZSH CONFIG
+# ---- TOOLS CONFIG AND INITIALIZATIONS ----
+
+# Oh-My-Zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 COMPLETION_WAITING_DOTS="true"
@@ -44,20 +48,19 @@ plugins=(
 )
 source "$ZSH/oh-my-zsh.sh"
 
-# POWERLEVEL10K CONFIG
+# Powerlevel10k
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# HOMEBREW CONFIG
+# Homebrew
 export HOMEBREW_UPGRADE_GREEDY=1
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_INSTALL_BADGE="✅"
 
-# NVM CONFIG
+# Nvm
 export NVM_DIR="$HOME/.nvm"
-
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# ANDROID CONFIG
+# Android
 export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 
@@ -67,26 +70,82 @@ export ANDROID_EMULATOR="$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_PLATFORM_TOOLS:$ANDROID_EMULATOR"
 
 
-# CUSTOM FUNCTIONS
+# ---- FUNCTIONS ----
 
-# cleanup local git branches that are not on remote
+start_php_services () {
+  echo "Starting DNSMasq (need sudo)"
+  sudo brew services start dnsmasq
+
+  echo "Starting httpd (Apache)"
+  brew services start httpd
+
+  echo "Starting MariaDB"
+  brew services start mariadb
+
+  echo "Switching PHP version to 8.2"
+  sphp 8.2
+
+  echo "Services status: (need sudo)"
+  sudo brew services list | grep -E 'dnsmasq'
+  brew services list | grep -E 'httpd|mariadb'
+}
+
+stop_php_services () {
+  echo "Stopping DNSMasq (need sudo)"
+  sudo brew services stop dnsmasq
+
+  echo "Stopping httpd (Apache)"
+  brew services stop httpd
+
+  echo "Stopping MariaDB"
+  brew services stop mariadb
+
+  echo "Services status: (need sudo)"
+  sudo brew services list | grep -E 'dnsmasq'
+  brew services list | grep -E 'httpd|mariadb'
+}
+
 delete_localonly_git_branches () {
   git fetch --prune
 
   git branch --format "%(refname:short)" | while read branch; do
     if ! git show-ref --quiet refs/remotes/origin/$branch; then
-      echo "Deleting local branch: $branch"
+      echo "Deleting localonly branch: $branch"
       git branch -D $branch
     fi
   done
 }
 
-# FUNCTIONS ALIASES
+load_nvmrc_or_default () {
+  local nvmrc_path
+  nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version
+    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+
+
+# ---- ALIASES ----
+
+# Aliases for the above functions
+alias cleanupgitbranches="delete_localonly_git_branches"
 alias cleanupbranches="delete_localonly_git_branches"
+alias startphp="start_php_services"
+alias stopphp="stop_php_services"
+alias nvmrc="load_nvmrc_or_default"
 
-
-# CUSTOM ALIASES
-
+# Get local IP address
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
 
 alias zshconfig="code ~/.zshrc"
@@ -97,14 +156,19 @@ alias sshfolder="cd ~/.ssh"
 
 alias gitconfig="code ~/.gitconfig"
 
-alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window $@"
+alias hostsconfig="code /etc/hosts"
+alias hostconfig="hostsconfig"
 
-alias hosts="code /etc/hosts"
+alias vhostsconfig="code /usr/local/etc/httpd/extra/httpd-vhosts.conf"
+alias vhostconfig="vhostsconfig"
+alias httpdhostsconfig="vhostsconfig"
+alias httpdhostconfig="vhostsconfig"
 
-alias httpdhosts="code /usr/local/etc/httpd/extra/httpd-vhosts.conf"
 alias httpdconfig="code /usr/local/etc/httpd/httpd.conf"
 
 alias dnsmasqconfig="code /usr/local/etc/dnsmasq.conf"
+
+alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window $@"
 
 # alias p="pnpm"
 # alias pi="pnpm install"
@@ -115,9 +179,19 @@ alias dnsmasqconfig="code /usr/local/etc/dnsmasq.conf"
 # alias ll='exa -l --icons --no-user --group-directories-first'
 # alias la='exa -la --icons --no-user --group-directories-first'
 
+# ---- HOOKS ----
 
-# ------------------------------
+autoload -U add-zsh-hook
 
-# SDK MANAGER (Keep at the bottom of this file)
+# Load .nvmrc file when changing directories
+add-zsh-hook chpwd load_nvmrc_or_default
+
+
+# ---- OTHER INITIALIZATIONS ----
+
+# Load .nvmrc file when sourcing .zshrc
+load_nvmrc_or_default
+
+# SDK Manager (Java, Kotlin, Gradle, etc.) (should stay at the end of this file)
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
