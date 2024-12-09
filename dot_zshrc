@@ -1,11 +1,12 @@
-# Powerlevel10k instant prompt (should stay at the top of this file)
+# -------- Pre-Initialization --------
+
+# Powerlevel10k instant prompt (should stay at the top this file)
 # Initialization code that may require console input/output must go above this block.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-
-# ---- CUSTOM VARIABLES ----
+# -------- Custom Variables --------
 
 export DEV="$HOME/dev"
 
@@ -20,57 +21,7 @@ export SANDBOX="$PROJETS/sandbox"
 
 export DOTFILES="$(chezmoi source-path || echo $HOME/.local/share/chezmoi)"
 
-
-# ---- GLOBAL CONFIG ----
-
-# Language
-export LANG="en_US.UTF-8"
-
-# Default editor
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR="nano" # ssh
- else
-   export EDITOR="code" # local
- fi
- 
-
-# ---- TOOLS CONFIG AND INITIALIZATIONS ----
-
-# Oh-My-Zsh
-export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="dd/mm/yyyy"
-plugins=(
-  brew
-	git
-	zsh-syntax-highlighting
-)
-source "$ZSH/oh-my-zsh.sh"
-
-# Powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# Homebrew
-export HOMEBREW_UPGRADE_GREEDY=1
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_INSTALL_BADGE="✅"
-
-# Nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-# Android
-export ANDROID_SDK_ROOT="$HOME/Library/Android/sdk"
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-
-export ANDROID_PLATFORM_TOOLS="$ANDROID_HOME/platform-tools"
-export ANDROID_EMULATOR="$ANDROID_HOME/emulator"
-
-export PATH="$PATH:$ANDROID_PLATFORM_TOOLS:$ANDROID_EMULATOR"
-
-
-# ---- FUNCTIONS ----
+# -------- Custom Functions --------
 
 start_php_services () {
   echo "Starting DNSMasq (need sudo)"
@@ -104,7 +55,7 @@ stop_php_services () {
   sudo brew services list | grep -E 'dnsmasq'
   brew services list | grep -E 'httpd|mariadb'
 }
-
+  
 delete_localonly_git_branches () {
   git fetch --prune
 
@@ -135,26 +86,27 @@ load_nvmrc_or_default () {
   fi
 }
 
+# -------- Aliases --------
 
-# ---- ALIASES ----
-
-# Aliases for the above functions
-alias cleanupgitbranches="delete_localonly_git_branches"
+# Custom functions as aliases
 alias cleanupbranches="delete_localonly_git_branches"
+alias cleanupbranch="delete_localonly_git_branches"
+alias cleanupgitbranches="delete_localonly_git_branches"
+alias cleanupgitbranch="delete_localonly_git_branches"
 alias startphp="start_php_services"
 alias stopphp="stop_php_services"
 alias nvmrc="load_nvmrc_or_default"
 
-# Get local IP address
+# Common aliases
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
+
+alias gitconfig="code ~/.gitconfig"
 
 alias zshconfig="code ~/.zshrc"
 alias zshsource="source ~/.zshrc"
 
 alias sshconfig="code ~/.ssh/config"
 alias sshfolder="cd ~/.ssh"
-
-alias gitconfig="code ~/.gitconfig"
 
 alias hostsconfig="code /etc/hosts"
 alias hostconfig="hostsconfig"
@@ -179,19 +131,71 @@ alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -
 # alias ll='exa -l --icons --no-user --group-directories-first'
 # alias la='exa -la --icons --no-user --group-directories-first'
 
-# ---- HOOKS ----
+# -------- Global Configuration --------
+
+# Language
+export LANG="en_US.UTF-8"
+
+# Default editor
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR="nano" # ssh
+ else
+   export EDITOR="code" # local
+ fi
+ 
+# -------- Tools configuration --------
+
+# Oh-My-Zsh
+ZSH_THEME="powerlevel10k/powerlevel10k"
+COMPLETION_WAITING_DOTS="true"
+HIST_STAMPS="dd/mm/yyyy"
+plugins=(
+  brew
+	git
+	zsh-syntax-highlighting
+  zsh-autosuggestions
+  zsh-completions
+  zsh-history-substring-search
+  zsh-navigation-tools
+  zsh_reload
+  zsh-users
+  zsh-interactive-cd
+)
+export ZSH="$HOME/.oh-my-zsh"
+source "$ZSH/oh-my-zsh.sh"
+
+# Powerlevel10k
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Homebrew
+export HOMEBREW_UPGRADE_GREEDY=1
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_INSTALL_BADGE="✅"
+
+# Nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
+# Android
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+
+# -------- Hooks --------
 
 autoload -U add-zsh-hook
 
 # Load .nvmrc file when changing directories
 add-zsh-hook chpwd load_nvmrc_or_default
 
-
-# ---- OTHER INITIALIZATIONS ----
-
-# Load .nvmrc file when sourcing .zshrc
-load_nvmrc_or_default
+# -------- Post-Initialization --------
 
 # SDK Manager (Java, Kotlin, Gradle, etc.) (should stay at the end of this file)
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+# export SDKMAN_DIR="$HOME/.sdkman"
+# [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Mise
+eval "$(mise activate zsh)"
+
+# Load .nvmrc file on shell start
+load_nvmrc_or_default
