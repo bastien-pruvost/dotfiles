@@ -113,12 +113,6 @@ Follow the steps of this guide in order to ensure the installation goes as smoot
 Some settings are only available via command line:
 
 ```bash
-# Take screenshots as jpg (usually smaller size) and not png
-defaults write com.apple.screencapture type jpg
-
-# Do not open previous previewed files (e.g. PDFs) when opening a new one
-defaults write com.apple.Preview ApplePersistenceIgnoreState YES
-
 # Show Library folder
 chflags nohidden ~/Library
 
@@ -131,19 +125,38 @@ defaults write com.apple.finder ShowPathbar -bool true
 # Show status bar
 defaults write com.apple.finder ShowStatusBar -bool true
 
-# Disable mouse acceleration
-defaults write NSGlobalDomain com.apple.mouse.linear -bool true
-
 # Shorter Dock autohide animation duration
 defaults write com.apple.dock "autohide-time-modifier" -float "0.3"
 
 # Remove the Dock autohide delay
 defaults write com.apple.dock "autohide-delay" -float "0"
 
+# Enable "Group windows by application in Mission Control" (better for Aerospace tilling window management)
+defaults write com.apple.dock expose-group-apps -bool true
+
+# Disable "Displays have separate Spaces" (better for Aerospace tilling window management)
+defaults write com.apple.spaces spans-displays -bool false
+
+# Enable dragging windows from anywhere with Ctrl + Cmd + Drag (better for Aerospace tilling window management)
+defaults write -g NSWindowShouldDragOnGesture -bool true
+
+# Disable window animations (better for Aerospace tilling window management)
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+
+# Disable mouse acceleration
+defaults write NSGlobalDomain com.apple.mouse.linear -bool true
+
+# Take screenshots as jpg (usually smaller size) and not png
+defaults write com.apple.screencapture type jpg
+
+# Do not open previous previewed files (e.g. PDFs) when opening a new one
+defaults write com.apple.Preview ApplePersistenceIgnoreState YES
+
 # Disable rich text by default for TextEdit
 defaults write com.apple.TextEdit "RichText" -bool "false" && killall TextEdit
 
 # Restart Finder and Dock
+killall SystemUIServer;
 killall Finder;
 killall Dock;
 ```
