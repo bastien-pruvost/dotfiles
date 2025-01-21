@@ -1,0 +1,162 @@
+{
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.0",
+  "schemes" : [
+    {
+      "pointer" : {
+        "speed" : 0.22,
+        "disableAcceleration" : false,
+        "acceleration" : 0
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "scrolling" : {
+        "distance" : "auto",
+        "modifiers" : {
+          "command" : {
+            "type" : "auto"
+          },
+          "shift" : {
+            "type" : "auto"
+          }
+        },
+        "reverse" : {
+          "vertical" : false
+        }
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x1532",
+          "productID" : "0x65",
+          "productName" : "Razer Basilisk Essential",
+          "category" : "mouse"
+        }
+      }
+    },
+    {
+      "scrolling" : {
+        "modifiers" : {
+          "command" : {
+            "scale" : 5,
+            "type" : "changeSpeed"
+          }
+        }
+      },
+      "pointer" : {
+        "acceleration" : 2,
+        "speed" : 0.0689655172413792768,
+        "disableAcceleration" : false
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "if" : {
+        "device" : {
+          "vendorID" : "0x5ac",
+          "category" : "trackpad",
+          "productID" : "0x343",
+          "productName" : "Apple Internal Keyboard \/ Trackpad"
+        }
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "productID" : "0xc52b",
+          "productName" : "USB Receiver",
+          "category" : "mouse",
+          "vendorID" : "0x46d"
+        }
+      },
+      "scrolling" : {
+        "speed" : 0,
+        "distance" : "auto",
+        "modifiers" : {
+          "command" : {
+            "type" : "preventDefault"
+          },
+          "option" : {
+            "type" : "alterOrientation"
+          }
+        },
+        "reverse" : false,
+        "acceleration" : 1
+      },
+      "pointer" : {
+        "acceleration" : 0.85,
+        "speed" : 0.1085,
+        "disableAcceleration" : true
+      },
+      "buttons" : {
+        "universalBackForward" : false
+      }
+    },
+    {
+      "if" : {
+        "device" : {
+          "productID" : "0x340",
+          "category" : "trackpad",
+          "vendorID" : "0x5ac",
+          "serialNumber" : "FM70475031SHYYKBW+TRN",
+          "productName" : "Apple Internal Keyboard \/ Trackpad"
+        }
+      },
+      "scrolling" : {
+        "reverse" : true,
+        "modifiers" : {
+          "vertical" : {
+            "command" : {
+              "type" : "preventDefault"
+            },
+            "option" : {
+              "type" : "alterOrientation"
+            },
+            "control" : {
+              "type" : "preventDefault"
+            }
+          },
+          "horizontal" : {
+            "option" : {
+              "type" : "alterOrientation"
+            },
+            "command" : {
+              "type" : "preventDefault"
+            }
+          }
+        },
+        "speed" : 0,
+        "distance" : "auto",
+        "acceleration" : 1
+      },
+      "buttons" : {
+        "universalBackForward" : true
+      },
+      "pointer" : {
+        "acceleration" : 2.5,
+        "disableAcceleration" : false,
+        "speed" : 0.0689655172413792768
+      }
+    },
+    {
+      "scrolling" : {
+        "speed" : {
+          "vertical" : 4,
+          "horizontal" : 5
+        }
+      },
+      "if" : {
+        "device" : {
+          "productName" : "MX Master 3 Mac",
+          "vendorID" : "0x46d",
+          "productID" : "0xb023",
+          "serialNumber" : "6C108355C9823E60",
+          "category" : "mouse"
+        }
+      },
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.1254
+      }
+    }
+  ]
+}
