@@ -1,11 +1,3 @@
-# -------- Pre-Initialization --------
-
- # Powerlevel10k instant prompt (should stay at the top of this file)
-# Initialization code that may require console input/output must go above this block.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 # -------- Environment Variables --------
 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -26,81 +18,26 @@ export SANDBOX="$PROJETS/sandbox"
 
 export DOTFILES="$(chezmoi source-path || echo $HOME/.local/share/chezmoi)"
 
-# -------- Custom Functions --------
+# Load .nvmrc file on shell start (should stay at the bottom of this file)
+$SCRIPTS/switch-to-correct-nvm-version.sh
 
-start_php_services () {
-  echo "Starting DNSMasq (need sudo)"
-  sudo brew services start dnsmasq
+# -------- Pre-Initialization --------
 
-  echo "Starting httpd (Apache)"
-  brew services start httpd
-
-  echo "Starting MariaDB"
-  brew services start mariadb
-
-  echo "Switching PHP version to 8.2"
-  sphp 8.2
-
-  echo "Services status: (need sudo)"
-  sudo brew services list | grep -E 'dnsmasq'
-  brew services list | grep -E 'httpd|mariadb'
-}
-
-stop_php_services () {
-  echo "Stopping DNSMasq (need sudo)"
-  sudo brew services stop dnsmasq
-
-  echo "Stopping httpd (Apache)"
-  brew services stop httpd
-
-  echo "Stopping MariaDB"
-  brew services stop mariadb
-
-  echo "Services status: (need sudo)"
-  sudo brew services list | grep -E 'dnsmasq'
-  brew services list | grep -E 'httpd|mariadb'
-}
-  
-delete_localonly_git_branches () {
-  git fetch --prune
-
-  git branch --format "%(refname:short)" | while read branch; do
-    if ! git show-ref --quiet refs/remotes/origin/$branch; then
-      echo "Deleting localonly branch: $branch"
-      git branch -D $branch
-    fi
-  done
-}
-
-load_nvmrc_or_default () {
-  local nvmrc_path
-  nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version
-    nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
-      nvm use
-    fi
-  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
+ # Powerlevel10k instant prompt (should stay at the top of this file)
+# Initialization code that may require console input/output must go above this block.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # -------- Aliases --------
 
 # Custom functions as aliases
-alias cleanupbranches="delete_localonly_git_branches"
-alias cleanupbranch="delete_localonly_git_branches"
-alias cleanupgitbranches="delete_localonly_git_branches"
-alias cleanupgitbranch="delete_localonly_git_branches"
-alias startphp="start_php_services"
-alias stopphp="stop_php_services"
-alias nvmrc="load_nvmrc_or_default"
+alias cleanupbranches="delete-local-only-git-branches.sh"
+alias cleanupbranch="delete-local-only-git-branches.sh"
+alias cleanupgitbranches="delete-local-only-git-branches.sh"
+alias cleanupgitbranch="delete-local-only-git-branches.sh"
+alias startphp="start-php-services.sh"
+alias stopphp="stop-php-services.sh"
 
 # Common aliases
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
@@ -183,19 +120,23 @@ export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$PATH:$ANDROID_HOME/emulator"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-
+# Custom scripts
+export PATH="$PATH:$SCRIPTS"
 
 # -------- Hooks --------
 
 autoload -U add-zsh-hook
 
+# We need to define a function for the chpwd hook to work
+handle_folder_switching () {
+  switch-to-correct-nvm-version.sh
+}
+
 # Load .nvmrc file when changing directories
-add-zsh-hook chpwd load_nvmrc_or_default
+add-zsh-hook chpwd handle_folder_switching
 
 # -------- Post-Initialization --------
 
 # Mise - Tools version manager (should stay at the bottom of this file)
 eval "$(mise activate zsh)"
 
-# Load .nvmrc file on shell start (should stay at the bottom of this file)
-load_nvmrc_or_default
