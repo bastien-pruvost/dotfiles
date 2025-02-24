@@ -27,8 +27,8 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# after-startup-command = ['exec-and-forget borders active_color=0xff898f9c inactive_color=0xff494d64 width=4.0']
-after-startup-command = []
+after-startup-command = ['exec-and-forget borders active_color=0xff898f9c inactive_color=0xff494d64 width=4.0']
+# after-startup-command = []
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true
@@ -163,8 +163,9 @@ automatically-unhide-macos-hidden-apps = true
     ctrl-shift-7 = 'move-node-to-workspace 7'
     ctrl-shift-8 = 'move-node-to-workspace 8'
     ctrl-shift-9 = 'move-node-to-workspace 9'
-    ctrl-shift-0 = 'move-node-to-workspace 0'
+    ctrl-shift-l = 'move-node-to-workspace L'
     ctrl-shift-m = 'move-node-to-workspace M'
+    ctrl-shift-p = 'move-node-to-workspace P'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     ctrl-alt-1 = 'workspace 1'
@@ -176,8 +177,9 @@ automatically-unhide-macos-hidden-apps = true
     ctrl-alt-7 = 'workspace 7'
     ctrl-alt-8 = 'workspace 8'
     ctrl-alt-9 = 'workspace 9'
-    ctrl-alt-0 = 'workspace 0'
+    ctrl-alt-l = 'workspace L'
     ctrl-alt-m = 'workspace M'
+    ctrl-alt-p = 'workspace P'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     ctrl-alt-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
@@ -189,16 +191,18 @@ automatically-unhide-macos-hidden-apps = true
     ctrl-alt-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
     ctrl-alt-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
     ctrl-alt-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
-    ctrl-alt-shift-0 = 'move-node-to-workspace 0 --focus-follows-window'
+    ctrl-alt-shift-l = 'move-node-to-workspace L --focus-follows-window'
     ctrl-alt-shift-m = 'move-node-to-workspace M --focus-follows-window'
+    ctrl-alt-shift-p = 'move-node-to-workspace P --focus-follows-window'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
     alt-tab = 'workspace-back-and-forth'
+    
     # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
     # alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
     # Open iterm2 mac Application in new floating window
-    ctrl-alt-cmd-enter = 'exec-and-forget open -n /Applications/iTerm.app'
+    # ctrl-alt-cmd-enter = 'exec-and-forget open -n /Applications/iTerm.app'
 
     # See: https://nikitabobko.github.io/AeroSpace/commands#mode
     ctrl-shift-esc = 'mode service'
@@ -214,35 +218,13 @@ automatically-unhide-macos-hidden-apps = true
     r = ['flatten-workspace-tree', 'mode main'] # reset layout
 
 
-# Window rules
-
-# Floating windows
-# [[on-window-detected]]
-    # check-further-callbacks = true
-    # run = 'layout floating'
-
-[[on-window-detected]]
-    if.app-id = 'com.apple.finder'
-    run = ['layout floating']
-
-[[on-window-detected]]
-    if.app-id = 'company.thebrowser.Browser'
-    if.window-title-regex-substring = 'Bitwarden'
-    run = ['layout floating']
-
-[[on-window-detected]]
-    if.app-id = 'com.brave.Browser'
-    if.window-title-regex-substring = 'Bitwarden'
-    run = ['layout floating']
+# Callbacks for window detection
 
 # Primary screen
+
 # Web Browser = 1
 [[on-window-detected]]
     if.app-id = 'company.thebrowser.Browser'
-    run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
-    if.app-id = 'com.brave.Browser'
     run = 'move-node-to-workspace 1'
 
 # Code/IDE = 2
@@ -257,19 +239,12 @@ automatically-unhide-macos-hidden-apps = true
 
 # Dev Tools = 4
 [[on-window-detected]]
-    if.app-id = 'app.yaak.desktop'
-    run = 'move-node-to-workspace 4'
-
-[[on-window-detected]]
     if.app-id = 'com.usebruno.app'
     run = 'move-node-to-workspace 4'
 
-# Conference = 5
-[[on-window-detected]]
-    if.app-id = 'com.hnc.Discord'
-    run = 'move-node-to-workspace 5'
 
 # Secondary screen
+
 # Notes = 8
 [[on-window-detected]]
     if.app-id = 'notion.id'
@@ -292,10 +267,10 @@ automatically-unhide-macos-hidden-apps = true
     if.app-name-regex-substring = 'Calendar - OpenStudio'
     run = 'move-node-to-workspace 9'
 
-# Medias = 0
+# Conference = L
 [[on-window-detected]]
-    if.app-id = 'com.spotify.client'
-    run = 'move-node-to-workspace 0'
+    if.app-id = 'com.hnc.Discord'
+    run = 'move-node-to-workspace L'
 
 # Messaging = M
 [[on-window-detected]]
@@ -306,6 +281,39 @@ automatically-unhide-macos-hidden-apps = true
     if.app-id = 'com.apple.mail'
     run = 'move-node-to-workspace M'
 
+# Medias = P
+[[on-window-detected]]
+    if.app-id = 'com.spotify.client'
+    run = 'move-node-to-workspace P'
+
+
+# Floating windows
+
+# [[on-window-detected]]
+    # check-further-callbacks = true
+    # run = 'layout floating'
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.finder'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'com.bitwarden.desktop'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'company.thebrowser.Browser'
+    if.window-title-regex-substring = 'Bitwarden'
+    run = ['layout floating']
+
+[[on-window-detected]]
+    if.app-id = 'io.raindrop.macapp'
+    run = ['layout floating']
+
+
+# Important : Keep at the end of the file for switching preset script to work
+
+# Assign workspaces to monitors
 [workspace-to-monitor-force-assignment]
     # Home
     1 = ['main']
@@ -317,8 +325,9 @@ automatically-unhide-macos-hidden-apps = true
     7 = ['secondary']
     8 = ['secondary']
     9 = ['secondary']
-    0 = ['secondary']
+    L = ['secondary']
     M = ['secondary']
+    P = ['secondary']
 
     # Openstudio
     # 1 = [1]
@@ -331,13 +340,10 @@ automatically-unhide-macos-hidden-apps = true
     # 8 = [3]
     # 9 = [3]
     # 0 = [3]
+    # L = [3]
     # M = [3]
+    # P = [3]
     # A = [2]
-    # Z = [2]
-    # E = [2]
-    # R = [2]
-    # T = [2]
-    # Y = [2]
 
 
 
