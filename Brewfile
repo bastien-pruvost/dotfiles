@@ -12,14 +12,16 @@ mas "Xcode", id: 497799835
 
 # System utilities
 brew "chezmoi"
-brew "FelixKratz/formulae/borders"
+brew "felixkratz/formulae/borders"
+brew "displayplacer"
 brew "mas"
 brew "mise"
 cask "appcleaner"
 cask "font-commit-mono-nerd-font"
-cask "linearmouse" # not sure if needed
-cask "logi-options+" # not sure if needed
-cask "mos" # not sure if needed
+cask "hyperkey"
+cask "linearmouse"
+cask "logi-options+"
+cask "mos"
 cask "nikitabobko/tap/aerospace"
 cask "raycast"
 cask "stats"
@@ -41,6 +43,7 @@ cask "screaming-frog-seo-spider"
 cask "sublime-text"
 cask "tableplus"
 cask "visual-studio-code"
+# cask "xcodes"
 # cask "yaak"
 
 # Javascript & Node development
@@ -60,18 +63,20 @@ brew "imagemagick"
 brew "libyaml"
 brew "mariadb"
 brew "openssl@3"
-brew "php"
-brew "php@7.0"
-brew "php@7.1"
-brew "php@7.2"
-brew "php@7.3"
-brew "php@7.4"
-brew "php@8.0"
-brew "php@8.1"
-brew "php@8.2"
-brew "php@8.3"
+brew "shivammathur/php/php"
+brew "shivammathur/php/php@7.0"
+brew "shivammathur/php/php@7.1"
+brew "shivammathur/php/php@7.2"
+brew "shivammathur/php/php@7.3"
+brew "shivammathur/php/php@7.4"
+brew "shivammathur/php/php@8.0"
+brew "shivammathur/php/php@8.1"
+brew "shivammathur/php/php@8.2"
+brew "shivammathur/php/php@8.3"
+
 
 # Web browsers
+cask "arc"
 cask "brave-browser"
 cask "firefox"
 cask "google-chrome"
@@ -80,6 +85,7 @@ cask "google-chrome"
 cask "google-drive" # not sure if needed
 cask "notion-calendar"
 cask "notion"
+cask "raindropio"
 cask "todoist"
 
 # Communication tools
@@ -92,11 +98,3 @@ cask "microsoft-teams" # only for work
 cask "spotify"
 # cask "transmission" # not sure if needed (torrent client)
 cask "vlc"
-
-
-
-
-
-
-
-
