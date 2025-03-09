@@ -1,0 +1,29 @@
+[
+  {
+    "key": "alt+shift+i",
+    "command": "editor.action.sourceAction",
+    "when": "editorTextFocus",
+    "args": {
+      "kind": "source.addMissingImports",
+      "apply": "first"
+    }
+  },
+  {
+    "key": "alt+shift+o",
+    "command": "editor.action.sourceAction",
+    "when": "editorTextFocus",
+    "args": {
+      "kind": "source.organizeImports",
+      "apply": "first"
+    }
+  },
+  {
+    "key": "alt+shift+r",
+    "command": "editor.action.sourceAction",
+    "when": "editorTextFocus",
+    "args": {
+      "kind": "source.rename",
+      "apply": "first"
+    }
+  }
+]
