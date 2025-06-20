@@ -28,7 +28,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-    'exec-and-forget borders active_color=0xff898f9c inactive_color=0xff494d64 width=4.0',
+    # 'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=3.0',
 ]
 # after-startup-command = []
 
@@ -39,7 +39,7 @@ enable-normalization-opposite-orientation-for-nested-containers = true
 # See: https://nikitabobko.github.io/AeroSpace/guide#layouts
 # The 'accordion-padding' specifies the size of accordion padding
 # You can set 0 to disable the padding feature
-accordion-padding = 48
+accordion-padding = 96
 
 # Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
@@ -56,8 +56,16 @@ default-root-container-orientation = 'auto'
 # Fallback value (if you omit the key): on-focused-monitor-changed = []
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # on-focus-changed = ['move-mouse window-lazy-center']
-on-focused-monitor-changed = []
-on-focus-changed = []
+
+# on-focus-changed = [
+#   "exec-and-forget osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-index-jsx\"'",
+# ]
+
+# exec-on-workspace-change = [
+#   '/bin/zsh',
+#   '-c',
+#   '/usr/bin/osascript -e "tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-index-jsx\""',
+# ]
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
@@ -72,12 +80,12 @@ automatically-unhide-macos-hidden-apps = true
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 12
-inner.vertical = 12
-outer.left = 12
-outer.bottom = 12
-outer.top = 12
-outer.right = 12
+inner.horizontal = 10
+inner.vertical = 10
+outer.left = 10
+outer.bottom = 10
+outer.top = 10
+outer.right = 10
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -102,6 +110,9 @@ semicolon = 'comma'
 slash = 'period'
 equal = 'slash'
 # backslash = '' # Not used in AZERTY FR
+
+[exec]
+inherit-env-vars = false
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -135,8 +146,8 @@ ctrl-shift-up = 'move up'
 ctrl-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-ctrl-left = 'workspace prev'
-ctrl-right = 'workspace next'
+ctrl-left = '''exec-and-forget /usr/local/bin/aerospace workspace "$(/usr/local/bin/aerospace list-workspaces --monitor mouse --visible)" && /usr/local/bin/aerospace workspace prev'''
+ctrl-right = '''exec-and-forget /usr/local/bin/aerospace workspace "$(/usr/local/bin/aerospace list-workspaces --monitor mouse --visible)" && /usr/local/bin/aerospace workspace next'''
 
 # Previous and next monitor
 # ctrl-up = 'focus-monitor prev --wrap-around'
@@ -218,7 +229,7 @@ ctrl-alt-esc = 'mode service'
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
 degree = [
-    'exec-and-forget borders active_color=0xff898f9c inactive_color=0xff494d64 width=2.0',
+    'exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=3.0',
     'mode main',
 ]
 minus = [
@@ -236,11 +247,13 @@ r = ['flatten-workspace-tree', 'mode main'] # reset layout
 # Web Browser = 1
 [[on-window-detected]]
 if.app-id = 'company.thebrowser.Browser' # Arc
+if.window-title-regex-substring = '^.+$' # Any non empty window title (not extensions)
+check-further-callbacks = true
 run = 'move-node-to-workspace 1'
 
 # Code/IDE = 2
 [[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
+if.app-id = 'com.microsoft.VSCode' # VSCode
 run = 'move-node-to-workspace 2'
 
 [[on-window-detected]]
@@ -249,56 +262,63 @@ run = 'move-node-to-workspace 2'
 
 # Terminal = 3
 [[on-window-detected]]
-if.app-id = 'com.googlecode.iterm2'
+if.app-id = 'com.googlecode.iterm2' # iTerm2
 run = 'move-node-to-workspace 3'
 
 # Dev Tools = 4
 [[on-window-detected]]
-if.app-id = 'com.usebruno.app'
+if.app-id = 'com.usebruno.app'   # Bruno
 run = 'move-node-to-workspace 4'
+
+# Misc = 5
+#
 
 # Secondary screen
 
 # Notes = 8
 [[on-window-detected]]
-if.app-id = 'notion.id'
+if.app-id = 'notion.id'          # Notion
 run = 'move-node-to-workspace 8'
 
 # Productivity = 9
 [[on-window-detected]]
-if.app-id = 'com.todoist.mac.Todoist'
+if.app-id = 'com.todoist.mac.Todoist' # Todoist
 run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.iCal'
+if.app-id = 'com.apple.iCal'     # Calendar
 run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Notion Calendar'
+if.app-name-regex-substring = 'Notion Calendar' # Notion Calendar
 run = 'move-node-to-workspace 9'
 
 [[on-window-detected]]
-if.app-name-regex-substring = 'Calendar - OpenStudio'
+if.app-name-regex-substring = 'Calendar - OpenStudio' # OpenStudio Calendar
 run = 'move-node-to-workspace 9'
 
 # Conference = L
 [[on-window-detected]]
-if.app-id = 'com.hnc.Discord'
+if.app-id = 'com.hnc.Discord'    # Discord
 run = 'move-node-to-workspace L'
 
 # Messaging = M
 [[on-window-detected]]
-if.app-id = 'Mattermost.Desktop'
+if.app-id = 'Mattermost.Desktop' # Mattermost
 run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.mail'
+if.app-id = 'com.apple.mail'     # Mail
 run = 'move-node-to-workspace M'
 
 # Medias = P
 [[on-window-detected]]
-if.app-id = 'com.spotify.client'
+if.app-id = 'com.spotify.client' # Spotify
 run = 'move-node-to-workspace P'
+
+[[on-window-detected]]
+if.app-id = 'org.videolan.vlc'                      # VLC
+run = ['layout tiling', 'move-node-to-workspace P']
 
 # Floating windows
 
@@ -307,18 +327,19 @@ run = 'move-node-to-workspace P'
 # run = 'layout floating'
 
 [[on-window-detected]]
-if.app-id = 'com.apple.finder'
+if.app-id = 'com.apple.finder' # Finder
 run = ['layout floating']
 
 [[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop'
+if.app-id = 'com.bitwarden.desktop' # Bitwarden
 run = ['layout floating']
 
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'
-if.window-title-regex-substring = 'Bitwarden'
+if.app-id = 'company.thebrowser.Browser'      # Browser extension
+if.window-title-regex-substring = 'Bitwarden' # Bitwarden
 run = ['layout floating']
 
+# Raindrop
 [[on-window-detected]]
 if.app-id = 'io.raindrop.macapp'
 run = ['layout floating']

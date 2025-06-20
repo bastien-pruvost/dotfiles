@@ -1,4 +1,6 @@
+# Ignored by chezmoi + git
 .DS_Store
-Brewfile
-README.md
-.config/linearmouse
+node_modules/
+
+# Ignored by chezmoi, but stored on git
+.config/linearmouse/

@@ -7,94 +7,101 @@ cask_args appdir: "/Applications"
 # Mac App Store Applications
 mas "Bitwarden", id: 1352778147
 mas "TestFlight", id: 899247664
-mas "Wireguard", id: 1451685025
-mas "Xcode", id: 497799835
+mas "Wireguard", id: 1451685025 # work only
 
-# System utilities
+# Fonts
+brew "font-commit-mono-nerd-font"
+
+# System utilities (CLI)
 brew "chezmoi"
 brew "felixkratz/formulae/borders"
-brew "displayplacer"
 brew "mas"
-brew "mise"
+
+# System utilities (Apps)
 cask "appcleaner"
-cask "font-commit-mono-nerd-font"
-cask "hyperkey"
-cask "linearmouse"
 cask "logi-options+"
 cask "mos"
-cask "nikitabobko/tap/aerospace"
-cask "raycast"
 cask "stats"
 
-# CLI tools
+# Workflow tools (Apps)
+cask "nikitabobko/tap/aerospace"
+cask "hyperkey"
+cask "raycast"
+
+# CLI tools (CLI)
 brew "bat"
 brew "ffmpeg"
 brew "fzf"
 brew "ripgrep"
+brew "rlwrap"
 brew "wget"
 
-# Development tools
+# Development tools (CLI)
 brew "git"
+brew "mise"
+
+# Development tools (Apps)
 cask "bruno"
+cask "cursor"
 cask "docker"
 cask "orbstack"
-# cask "postman"
 cask "screaming-frog-seo-spider"
 cask "sublime-text"
 cask "tableplus"
 cask "visual-studio-code"
-# cask "xcodes"
-# cask "yaak"
+cask "xcodes"
 
-# Javascript & Node development
+# Javascript & Node development (CLI)
 brew "pnpm"
 brew "yarn"
 
-# Mobile development
+# Mobile development (CLI)
 brew "cocoapods" # iOS only
 brew "watchman" # React Native only
-cask "android-studio" # Android only
 # brew "fastlane"
 
-# PHP development
-brew "dnsmasq"
-brew "httpd"
-brew "imagemagick"
-brew "libyaml"
-brew "mariadb"
-brew "openssl@3"
-brew "shivammathur/php/php"
-brew "shivammathur/php/php@7.0"
-brew "shivammathur/php/php@7.1"
-brew "shivammathur/php/php@7.2"
-brew "shivammathur/php/php@7.3"
-brew "shivammathur/php/php@7.4"
-brew "shivammathur/php/php@8.0"
-brew "shivammathur/php/php@8.1"
-brew "shivammathur/php/php@8.2"
-brew "shivammathur/php/php@8.3"
+# Mobile development (Apps)
+cask "android-studio" # Android only
 
+# PHP development (CLI)
+brew "dnsmasq" # work only
+brew "httpd" # work only
+brew "imagemagick" # work only
+brew "libyaml" # work only
+brew "mariadb" # work only
+brew "openssl@3" # work only
+brew "shivammathur/php/php" # work only
+brew "shivammathur/php/php@7.0" # work only
+brew "shivammathur/php/php@7.1" # work only
+brew "shivammathur/php/php@7.2" # work only
+brew "shivammathur/php/php@7.3" # work only
+brew "shivammathur/php/php@7.4" # work only
+brew "shivammathur/php/php@8.0" # work only
+brew "shivammathur/php/php@8.1" # work only
+brew "shivammathur/php/php@8.2" # work only
+brew "shivammathur/php/php@8.3" # work only
 
-# Web browsers
+# Web browsers (Apps)
 cask "arc"
 cask "brave-browser"
 cask "firefox"
 cask "google-chrome"
+cask "microsoft-edge"
 
-# Productivity tools
-cask "google-drive" # not sure if needed
-cask "notion-calendar"
+# Productivity tools (Apps)
+cask "google-drive"
 cask "notion"
 cask "raindropio"
 cask "todoist"
 
-# Communication tools
+# Communication tools (Apps)
 cask "cameracontroller"
 cask "discord"
-cask "mattermost" # only for work
-cask "microsoft-teams" # only for work
+cask "mattermost" # work only
+cask "microsoft-teams" # work only
 
-# Media
+# Media (Apps)
 cask "spotify"
-# cask "transmission" # not sure if needed (torrent client)
+cask "iptvnator" # personal only
 cask "vlc"
+# cask "transmission" # personal only (torrent client)

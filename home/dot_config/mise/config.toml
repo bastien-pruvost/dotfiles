@@ -1,2 +1,8 @@
 [tools]
-java = "zulu-17"
+java = "zulu-21"
+python = "3.12"
+node = "22"
+sqlite = "3"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
