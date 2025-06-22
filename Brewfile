@@ -4,51 +4,44 @@ tap "homebrew/services"
 
 cask_args appdir: "/Applications"
 
-# Mac App Store Applications
-mas "Bitwarden", id: 1352778147
-mas "TestFlight", id: 899247664
-mas "Wireguard", id: 1451685025 # work only
-
 # Fonts
 brew "font-commit-mono-nerd-font"
 
 # System utilities (CLI)
 brew "chezmoi"
 brew "felixkratz/formulae/borders"
-brew "mas"
 
 # System utilities (Apps)
 cask "appcleaner"
+cask "hyperkey"
 cask "logi-options+"
 cask "mos"
+cask "nikitabobko/tap/aerospace"
+cask "raycast"
 cask "stats"
 
-# Workflow tools (Apps)
-cask "nikitabobko/tap/aerospace"
-cask "hyperkey"
-cask "raycast"
-
-# CLI tools (CLI)
+# CLI tools
 brew "bat"
 brew "ffmpeg"
 brew "fzf"
+brew "git"
+brew "gnupg"
+brew "mise"
 brew "ripgrep"
 brew "rlwrap"
 brew "wget"
 
-# Development tools (CLI)
-brew "git"
-brew "mise"
-
 # Development tools (Apps)
 cask "bruno"
+cask "chatgpt"
 cask "cursor"
 cask "docker"
+cask "iterm2"
 cask "orbstack"
 cask "screaming-frog-seo-spider"
 cask "sublime-text"
 cask "tableplus"
-cask "visual-studio-code"
+cask "visual-studio-code" # not used anymore for now
 cask "xcodes"
 
 # Javascript & Node development (CLI)
@@ -105,3 +98,8 @@ cask "spotify"
 cask "iptvnator" # personal only
 cask "vlc"
 # cask "transmission" # personal only (torrent client)
+
+# Mac App Store Applications
+mas "Bitwarden", id: 1352778147
+mas "TestFlight", id: 899247664
+mas "Wireguard", id: 1451685025 # work only
