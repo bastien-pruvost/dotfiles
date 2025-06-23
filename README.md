@@ -1,31 +1,33 @@
 # Dotfiles
 
-This repository is managed with [chezmoi](https://github.com/twpayne/chezmoi) and contains dotfiles and configurations for my development environment.
+This repository is managed with [chezmoi](https://github.com/twpayne/chezmoi) and contains configuration files for my development environment.
 
-> [!NOTE]  
+> [!NOTE]
 > My dev environment is focused on web, mobile and software development, it suits my needs and preferences.
 > You can use this repository as a reference or as a starting point for your own dotfiles.
 > It's up to you to decide what you want to keep or remove and make the necessary adjustments to suit your needs.
 
-# Introduction
+# Installation guide
+
+## Introduction
 
 This README is an opinionated guide to install a clean MacOS development environment.
 
-Follow the steps of this guide in order to ensure the installation goes as smoothly as possible.
+Follow the steps of this guide in the right order to ensure the installation goes as smoothly as possible.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Everytime you are prompted to setup a passphrase or password, make sure to use a strong and secure one and store it in a secure place.
 > Password managers are a good option to generate and store secure passwords.
 
-# Prerequisites
+## Prerequisites
 
 1. Set the Mac name
    - In _Setting > General > About > Name_
    - In _Settings > General > Sharing > Local hostname_
    - In Terminal:
-     - `sudo scutil --set ComputerName "john-macbook"`
-     - `sudo scutil --set LocalHostName "john-macbook"`
-     - `sudo scutil --set HostName "john-macbook"`
+     - `sudo scutil --set ComputerName "john-mbp"`
+     - `sudo scutil --set LocalHostName "john-mbp"`
+     - `sudo scutil --set HostName "john-mbp"`
 2. Setup an internet connection (Wi-Fi or Ethernet)
 3. Set User informations and password
    - In _Settings > Users & Groups_
@@ -34,9 +36,9 @@ Follow the steps of this guide in order to ensure the installation goes as smoot
    - In Terminal:
      - `softwareupdate --install --recommended --restart`
 
-# MacOS settings
+## MacOS settings
 
-## System settings (via GUI)
+### System settings (via GUI)
 
 - Appearance
   - Light Mode
@@ -108,7 +110,7 @@ Follow the steps of this guide in order to ensure the installation goes as smoot
 - Accessibility
   - Scroll Speed: Max
 
-## System settings (via Terminal)
+### System settings (via Terminal)
 
 Some settings are only available via command line:
 
