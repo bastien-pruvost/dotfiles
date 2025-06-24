@@ -7,33 +7,30 @@ cask_args appdir: "/Applications"
 # Fonts
 brew "font-commit-mono-nerd-font"
 
-# System utilities (CLI)
-brew "chezmoi"
-brew "felixkratz/formulae/borders"
-
 # System utilities (Apps)
 cask "appcleaner"
-cask "hyperkey"
 cask "logi-options+"
 cask "mos"
 cask "nikitabobko/tap/aerospace"
 cask "raycast"
 cask "stats"
 
-# CLI tools
+# System utilities (CLI)
+brew "chezmoi"
+brew "felixkratz/formulae/borders"
+
+# Shell tools (CLI)
 brew "bat"
+brew "eza"
 brew "ffmpeg"
 brew "fzf"
-brew "git"
 brew "gnupg"
-brew "mise"
 brew "ripgrep"
 brew "rlwrap"
 brew "wget"
 
-# Development tools (Apps)
+# Dev tools (Apps)
 cask "bruno"
-cask "chatgpt"
 cask "cursor"
 cask "docker"
 cask "iterm2"
@@ -44,17 +41,21 @@ cask "tableplus"
 cask "visual-studio-code" # not used anymore for now
 cask "xcodes"
 
+# Dev tools (CLI)
+brew "git"
+brew "mise"
+
 # Javascript & Node development (CLI)
 brew "pnpm"
 brew "yarn"
+
+# Mobile development (Apps)
+cask "android-studio" # Android only
 
 # Mobile development (CLI)
 brew "cocoapods" # iOS only
 brew "watchman" # React Native only
 # brew "fastlane"
-
-# Mobile development (Apps)
-cask "android-studio" # Android only
 
 # PHP development (CLI)
 brew "dnsmasq" # work only
@@ -82,6 +83,7 @@ cask "google-chrome"
 cask "microsoft-edge"
 
 # Productivity tools (Apps)
+cask "chatgpt"
 cask "google-drive"
 cask "notion"
 cask "raindropio"
