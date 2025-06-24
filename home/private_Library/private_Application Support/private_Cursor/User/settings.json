@@ -199,5 +199,6 @@
     "**/.sentryclirc"
   ],
   "editor.linkedEditing": true,
-  "editor.colorDecorators": false
+  "editor.colorDecorators": false,
+  "security.promptForLocalFileProtocolHandling": false
 }

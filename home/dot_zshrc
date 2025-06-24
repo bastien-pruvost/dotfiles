@@ -1,20 +1,20 @@
-# Load .nvmrc file on shell start (should stay at the bottom of this file)
-# $SCRIPTS/switch-to-correct-nvm-version.sh
-
 # -------- Pre-Initialization --------
 
- # Powerlevel10k instant prompt (should stay at the top of this file)
-# Initialization code that may require console input/output must go above this block.
+# Powerlevel10k instant prompt (must be at the top)
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# -------- Environment Variables --------
+# -------- XDG Variables --------
 
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
+mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
+
+# -------- Custom Variables --------
 
 export DEV="$HOME/dev"
 
@@ -23,121 +23,137 @@ export TOOLS="$DEV/tools"
 export SCRIPTS="$DEV/scripts"
 export TEMP="$DEV/temp"
 
-export WORK="$PROJETS/work"
-export PERSONAL="$PROJETS/personal"
-export SANDBOX="$PROJETS/sandbox"
+export WORK="$PROJECTS/work"
+export PERSONAL="$PROJECTS/personal"
+export SANDBOX="$PROJECTS/sandbox"
 
-export DOTFILES="$(chezmoi source-path || echo $HOME/.local/share/chezmoi)"
+export DOTFILES="$(chezmoi source-path 2>/dev/null || echo "$HOME/.local/share/chezmoi")"
+export BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix 2>/dev/null)}"
 
-# -------- Tools configuration --------
+# -------- Shell configuration (Zsh) --------
 
-# Oh-My-Zsh
-ZSH_THEME="powerlevel10k/powerlevel10k"
-COMPLETION_WAITING_DOTS="true"
-HIST_STAMPS="dd/mm/yyyy"
-plugins=(
-  brew
-	git
-	zsh-syntax-highlighting
-)
-export ZSH="$HOME/.oh-my-zsh"
-source "$ZSH/oh-my-zsh.sh"
+# Powerlevel10k Theme
+[[ -f "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+[[ -f "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
 
-# Powerlevel10k
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# History
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=50000
+SAVEHIST=10000
+HISTDUP=erase
+setopt appendhistory
+setopt incappendhistory
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_verify
 
-# Fzf
-source <(fzf --zsh)
+# Completion
+autoload -Uz compinit
+compinit -u -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
+zstyle ":completion:*" cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
+zstyle ":completion:*" menu select
+zstyle ":completion:*" list-rows-first false
+zstyle ":completion:*" list-packed false
+zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS:-}"
+zstyle ":completion:*" matcher-list "m:{a-zA-Z}={A-Za-z}"
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
+unsetopt menu_complete
+unsetopt flowcontrol
+bindkey "^I" expand-or-complete
 
-# Homebrew
-# export HOMEBREW_UPGRADE_GREEDY=1
-export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_INSTALL_BADGE="✓"
-export PATH="$(brew --prefix)/sbin:$PATH"
+# History Substring Search
+HSS="$BREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
+[[ -f "$HSS" ]] && source "$HSS"
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=false
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND=false
+bindkey "^[[A" history-substring-search-up
+bindkey "^[[B" history-substring-search-down
 
-# Nvm (not used anymore for now)
-# export NVM_DIR="$HOME/.nvm"
-# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# Fuzzy Finder (fzf)
+if command -v fzf >/dev/null; then
+  source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
+  source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+fi
 
-# Android
+# Syntax Highlighting
+SYNTAX="$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -f "$SYNTAX" ]] && source "$SYNTAX"
+
+# -------- Tool Paths & Env Vars --------
+
+# Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
-export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$ANDROID_HOME/platform-tools:$PATH"
+export PATH="$ANDROID_HOME/emulator:$PATH"
 
 # Custom scripts
-export PATH="$PATH:$SCRIPTS"
+export PATH="$SCRIPTS:$PATH"
 
-# -------- Hooks --------
+# Homebrew
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_INSTALL_BADGE="✓"
+export PATH="$BREW_PREFIX/sbin:$PATH"
 
-# autoload -U add-zsh-hook
+# SQLite
+export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
-# # We need to define a function for the chpwd hook to work
-# handle_folder_switching () {
-#   switch-to-correct-nvm-version.sh
-# }
+# -------- Global Configuration --------
 
-# # Load .nvmrc file when changing directories
-# add-zsh-hook chpwd handle_folder_switching
+export LANG="en_US.UTF-8"
+
+# Editor
+if [[ -n "$SSH_CONNECTION" ]]; then
+  export EDITOR="nano"
+else
+  export EDITOR="cursor"
+fi
 
 # -------- Aliases --------
 
-# Custom functions as aliases
+# Navigation aliases
+alias ...='../..'
+alias ....='../../..'
+alias .....='../../../..'
+alias ......='../../../../..'
+
+# Git cleanup aliases
 alias cleanupbranches="delete-local-only-git-branches.sh"
-alias cleanupbranch="delete-local-only-git-branches.sh"
-alias cleanupgitbranches="delete-local-only-git-branches.sh"
-alias cleanupgitbranch="delete-local-only-git-branches.sh"
+alias cleanupbranch="cleanupbranches"
+alias cleanupgitbranches="cleanupbranches"
+alias cleanupgitbranch="cleanupbranches"
+
+# PHP services aliases
 alias startphp="start-php-services.sh"
 alias stopphp="stop-php-services.sh"
 
 # Common aliases
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
-
 alias gitconfig="code ~/.gitconfig"
-
 alias zshconfig="code ~/.zshrc"
 alias zshsource="source ~/.zshrc"
-
 alias sshconfig="code ~/.ssh/config"
 alias sshfolder="cd ~/.ssh"
-
 alias hostsconfig="code /etc/hosts"
 alias hostconfig="hostsconfig"
-
 alias vhostsconfig="code /usr/local/etc/httpd/extra/httpd-vhosts.conf"
 alias vhostconfig="vhostsconfig"
 alias httpdhostsconfig="vhostsconfig"
 alias httpdhostconfig="vhostsconfig"
-
 alias httpdconfig="code /usr/local/etc/httpd/httpd.conf"
-
 alias dnsmasqconfig="code /usr/local/etc/dnsmasq.conf"
 
+# Sublime Text alias
 alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window $@"
 
+# Better SQLite shell alias
 alias sqlite3="rlwrap sqlite3"
-
-# alias p="pnpm"
-# alias pi="pnpm install"
-# alias pa="pnpm add"
-# alias pad="pnpm add -D"
-
-# alias ls='exa -a --group-directories-first'
-# alias ll='exa -l --icons --no-user --group-directories-first'
-# alias la='exa -la --icons --no-user --group-directories-first'
-
-# -------- Global Configuration --------
-
-# Language
-export LANG="en_US.UTF-8"
-
-# Default editor
- if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR="nano" # ssh
- else
-   export EDITOR="cursor" # local
- fi
 
 # -------- Post-Initialization --------
 
-# Mise - Tools version manager (should stay at the bottom of this file)
+# Mise - Tools version manager (must be at the bottom)
 eval "$(mise activate zsh)"
