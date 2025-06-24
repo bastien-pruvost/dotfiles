@@ -3,4 +3,3 @@
 node_modules/
 
 # Ignored by chezmoi, but stored on git
-.config/linearmouse/
