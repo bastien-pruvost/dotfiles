@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# -------- XDG Variables --------
+# -------- XDG variables --------
 
 export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
@@ -14,25 +14,28 @@ export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 
 mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
 
-# -------- Custom Variables --------
+# -------- Custom variables --------
 
-export DEV="$HOME/dev"
+export DEV="$HOME/Dev"
 
-export PROJECTS="$DEV/projects"
-export TOOLS="$DEV/tools"
-export SCRIPTS="$DEV/scripts"
-export TEMP="$DEV/temp"
+export DOCS="$DEV/Docs"
+export PROJECTS="$DEV/Projects"
+export RESOURCES="$DEV/Resources"
+export SCRIPTS="$DEV/Scripts"
+export TOOLS="$DEV/Tools"
 
-export WORK="$PROJECTS/work"
-export PERSONAL="$PROJECTS/personal"
-export SANDBOX="$PROJECTS/sandbox"
+export OSS_PROJECTS="$PROJECTS/OSS"
+export PERSONAL_PROJECTS="$PROJECTS/Personal"
+export SANDBOX_PROJECTS="$PROJECTS/Sandbox"
+export TEMPLATES_PROJECTS="$PROJECTS/Templates"
+export WORK_PROJECTS="$PROJECTS/Work"
 
 export DOTFILES="$(chezmoi source-path 2>/dev/null || echo "$HOME/.local/share/chezmoi")"
 export BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix 2>/dev/null)}"
 
-# -------- Shell configuration (Zsh) --------
+# -------- Shell (Zsh) configuration --------
 
-# Powerlevel10k Theme
+# Powerlevel10k theme
 [[ -f "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
 [[ -f "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
 
@@ -66,7 +69,7 @@ unsetopt menu_complete
 unsetopt flowcontrol
 bindkey "^I" expand-or-complete
 
-# History Substring Search
+# Zsh History Substring Search
 HSS="$BREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
 [[ -f "$HSS" ]] && source "$HSS"
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=false
@@ -80,19 +83,16 @@ if command -v fzf >/dev/null; then
   source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 fi
 
-# Syntax Highlighting
+# Zsh Syntax Highlighting
 SYNTAX="$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 [[ -f "$SYNTAX" ]] && source "$SYNTAX"
 
-# -------- Tool Paths & Env Vars --------
+# -------- Tools configurations & Paths --------
 
 # Android SDK
 export ANDROID_HOME="$HOME/Library/Android/sdk"
 export PATH="$ANDROID_HOME/platform-tools:$PATH"
 export PATH="$ANDROID_HOME/emulator:$PATH"
-
-# Custom scripts
-export PATH="$SCRIPTS:$PATH"
 
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
@@ -104,7 +104,8 @@ export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
 # -------- Global Configuration --------
 
-export LANG="en_US.UTF-8"
+# Custom scripts path
+export PATH="$SCRIPTS:$PATH"
 
 # Editor
 if [[ -n "$SSH_CONNECTION" ]]; then
@@ -112,6 +113,9 @@ if [[ -n "$SSH_CONNECTION" ]]; then
 else
   export EDITOR="cursor"
 fi
+
+# Locale
+export LANG="en_US.UTF-8"
 
 # -------- Aliases --------
 
@@ -131,8 +135,10 @@ alias cleanupgitbranch="cleanupbranches"
 alias startphp="start-php-services.sh"
 alias stopphp="stop-php-services.sh"
 
-# Common aliases
+# IP address aliases
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
+
+# Config files aliases
 alias gitconfig="code ~/.gitconfig"
 alias zshconfig="code ~/.zshrc"
 alias zshsource="source ~/.zshrc"
