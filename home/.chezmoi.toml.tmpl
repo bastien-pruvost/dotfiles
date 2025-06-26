@@ -1,0 +1,71 @@
+{{/* boolean feature tags */}}
+{{- $is_ephemeral := false -}} {{- /* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
+{{- $is_headless := false -}} {{- /* true if this machine does not have a screen and keyboard */}}
+{{- $is_personal := false -}} {{- /* true if this machine should have personal secrets */}}
+{{- $is_work := false -}} {{- /* true if this machine is a work machine */}}
+
+{{- $os_id := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $os_id = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* work around unreliable hostname on darwin */}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- if eq .chezmoi.os "darwin" -}}
+{{-   $hostname = output "scutil" "--get" "LocalHostName" | trim -}}
+{{- end -}}
+
+{{/* detect GitHub codespaces, VSCode remote containers, Docker containers, Multipass VMs, and Vagrant boxes */}}
+{{- if or (env "CODESPACES") (env "REMOTE_CONTAINERS_IPC") (eq .chezmoi.username "root" "ubuntu" "vagrant" "vscode") -}}
+{{-   $is_ephemeral = true -}}
+{{-   $is_headless = true -}}
+{{- end -}}
+
+{{- if contains $hostname "personal" -}}
+{{-   $is_personal = true -}}
+{{- else if contains $hostname "work" -}}
+{{-   $is_work = true -}}
+{{- end -}}
+
+{{- if stdinIsATTY -}}
+{{-   if $is_ephemeral -}}
+{{-     $is_ephemeral = promptBoolOnce . "ephemeral" "It looks like you are running in an ephemeral environment (e.g. a cloud or VM instance). Is this correct?" -}}
+{{-   else -}}
+{{-     $is_ephemeral = promptBoolOnce . "ephemeral" "Are you running in an ephemeral environment? (e.g. a cloud or VM instance)" -}}
+{{-   end -}}
+{{-   if $is_headless -}}
+{{-     $is_headless = promptBoolOnce . "headless" "It looks like you are running in a headless environment (no screen and keyboard, only ssh or terminal). Is this correct?" -}}
+{{-   else -}}
+{{-     $is_headless = promptBoolOnce . "headless" "Are you running in a headless environment? (no screen and keyboard, only ssh or terminal)" -}}
+{{-   end -}}
+{{-   if $is_personal -}}
+{{-     $is_personal = promptBoolOnce . "personal" "It looks like you are running on a personal machine. Is this correct?" -}}
+{{-   else -}}
+{{-     $is_personal = promptBoolOnce . "personal" "Are you running on a personal machine?" -}}
+{{-   end -}}
+{{-   if $is_work -}}
+{{-     $is_work = promptBoolOnce . "work" "It looks like you are running on a work machine. Is this correct?" -}}
+{{-   else -}}
+{{-     $is_work = promptBoolOnce . "work" "Are you running on a work machine?" -}}
+{{-   end -}}
+{{- else -}}
+{{-   $is_ephemeral = true -}}
+{{-   $is_headless = true -}}
+{{-   $is_personal = false -}}
+{{-   $is_work = false -}}
+{{- end -}}
+
+{{- $full_name := promptStringOnce . "full_name" "What is your full name?" -}}
+{{- $personal_email := promptStringOnce . "personal_email" "What is your personal email?" -}}
+{{- $work_email := promptStringOnce . "work_email" "What is your work email?" -}}
+
+[data]
+    is_ephemeral = {{ $is_ephemeral }}
+    is_headless = {{ $is_headless }}
+    is_personal = {{ $is_personal }}
+    is_work = {{ $is_work }}
+    os_id = {{ $os_id | quote }}
+    hostname = {{ $hostname | quote }}
+    full_name = {{ $full_name | quote }}
+    personal_email = {{ $personal_email | quote }}
+    work_email = {{ $work_email | quote }}
