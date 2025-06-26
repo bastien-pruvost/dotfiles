@@ -69,3 +69,10 @@
     full_name = {{ $full_name | quote }}
     personal_email = {{ $personal_email | quote }}
     work_email = {{ $work_email | quote }}
+
+[merge]
+command = "bash"
+args = [
+    "-c",
+    {{ printf "%q" "cp {{ .Target }} {{ .Target }}.base && code --new-window --wait --merge {{ .Destination }} {{ .Target }} {{ .Target }}.base {{ .Source }}" }},
+]
