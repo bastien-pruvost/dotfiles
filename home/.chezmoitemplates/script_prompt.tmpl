@@ -1,0 +1,35 @@
+# This script template is a function that will prompt the user to run, skip, or quit the script
+# It will return 0 if the user runs the script, 1 if the user skips the script, and 2 if the user quits the script
+
+script_prompt() {
+    local script_name="$1"
+    local script_description="$2"
+
+    echo "--------------------------------"
+    echo
+    echo "Now the following script will be executed:"
+    echo
+    echo "Script: $script_name"
+    echo "Description: $script_description"
+    echo
+    read -n 1 -s -r -p "Press (r)un, (s)kip, or (q)uit: " choice
+    echo
+
+    case $choice in
+        r|R|'')
+            return 0  # Continue
+            ;;
+        s|S)
+            echo "Skipping $script_name" # Skipping the script
+            exit 0
+            ;;
+        q|Q)
+            echo "Quitting" # Quitting the script
+            exit 1
+            ;;
+        *)
+            echo "Invalid choice. Skipping $script_name" # Invalid choice, skipping the script
+            exit 0
+            ;;
+    esac
+}

@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ template "script_prompt.tmpl" . }}
+
+script_prompt "Packages Installation" "This script will install packages from Brewfile"
+
+{{ $brewfilePath := printf "%s/Brewfile" .chezmoi.sourceDir }}
+
+# Template data to detect changes in Brewfile
+# This will trigger the onchange script if the contents of Brewfile change
+: "Brewfile hash: {{ include $brewfilePath | sha256sum }}"
+echo "The Brewfile content has been updated since the last chezmoi sync at {{ $brewfilePath }}"
+
+# Ensure Homebrew is installed
+if ! command -v brew &> /dev/null; then
+  echo "Homebrew not found. Installing..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  echo "Homebrew installed ✔︎"
+
+  # Add brew to PATH for macOS ARM
+  if [[ -d "/opt/homebrew/bin" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  fi
+
+  # Ensure Brew is in PATH
+  if ! command -v brew &> /dev/null; then
+    echo "Homebrew installation failed or not in PATH"
+    exit 1
+  else
+    echo "Homebrew is in PATH ✔︎"
+  fi
+else
+  echo "Homebrew is already installed ✔︎"
+  echo "Homebrew is in PATH ✔︎"
+fi
+
+# Check if Brewfile is already ok, if not, install packages
+if brew bundle check --file="{{ $brewfilePath }}" > /dev/null 2>&1; then
+  echo "Packages from Brewfile are already installed ✔︎"
+else
+  echo "Packages from Brewfile are not installed, installing..."
+  brew bundle --file="{{ $brewfilePath }}"
+fi

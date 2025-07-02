@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eufo pipefail
+
+{{ template "script_prompt.tmpl" . }}
+
+script_prompt "Xcode Command Line Tools Installation" "This script will install Xcode Command Line Tools"
+
+xcode-select --install
