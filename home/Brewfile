@@ -32,7 +32,7 @@ brew "wget"
 # Dev tools (Apps)
 cask "bruno"
 cask "cursor"
-cask "docker"
+cask "devtoys"
 cask "iterm2"
 cask "orbstack"
 cask "screaming-frog-seo-spider"
@@ -44,10 +44,6 @@ cask "xcodes"
 # Dev tools (CLI)
 brew "git"
 brew "mise"
-
-# Javascript & Node development (CLI)
-brew "pnpm"
-brew "yarn"
 
 # Mobile development (Apps)
 cask "android-studio" # Android only
@@ -74,6 +70,10 @@ brew "shivammathur/php/php@8.0" # work only
 brew "shivammathur/php/php@8.1" # work only
 brew "shivammathur/php/php@8.2" # work only
 brew "shivammathur/php/php@8.3" # work only
+
+# Design tools (Apps)
+cask "canva"
+cask "figma"
 
 # Web browsers (Apps)
 cask "arc"
