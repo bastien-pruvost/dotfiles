@@ -1,6 +1,6 @@
 [user]
-	name = {{- .full_name -}}
-	email = {{- .personal_email -}}
+	name = {{ .full_name }}
+	email = {{ .personal_email }}
 [core]
   editor = code --wait
   ignorecase = false
@@ -8,5 +8,5 @@
 	defaultBranch = main
 [pull]
   rebase = true
-[includeIf "gitdir:{{ env "WORK_PROJECTS" }}"]
-  path = {{ env "XDG_CONFIG_HOME" }}/git/config.work
+[includeIf "gitdir:~/Dev/Projects/Work/"]
+  path = ~/.config/git/config.work

@@ -1,9 +1,6 @@
 # -------- XDG variables --------
 
-export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
-export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
-export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
-export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+{{ template "zsh_env_xdg.tmpl" . }}
 
 # -------- Pre-Initialization --------
 
@@ -14,19 +11,7 @@ fi
 
 # -------- Custom variables --------
 
-export DEV="$HOME/Dev"
-
-export DOCS="$DEV/Docs"
-export PROJECTS="$DEV/Projects"
-export RESOURCES="$DEV/Resources"
-export SCRIPTS="$DEV/Scripts"
-export TOOLS="$DEV/Tools"
-
-export OSS_PROJECTS="$PROJECTS/OSS"
-export PERSONAL_PROJECTS="$PROJECTS/Personal"
-export SANDBOX_PROJECTS="$PROJECTS/Sandbox"
-export TEMPLATES_PROJECTS="$PROJECTS/Templates"
-export WORK_PROJECTS="$PROJECTS/Work"
+{{ template "zsh_env_custom.tmpl" . }}
 
 export BREW_PREFIX="${BREW_PREFIX:-$(brew --prefix 2>/dev/null)}"
 export DOTFILES="$(chezmoi source-path 2>/dev/null || echo "$HOME/.local/share/chezmoi")"

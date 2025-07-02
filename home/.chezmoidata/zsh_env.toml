@@ -1,0 +1,20 @@
+[zsh.env.xdg]
+XDG_CONFIG_HOME = "$HOME/.config"
+XDG_CACHE_HOME = "$HOME/.cache"
+XDG_DATA_HOME = "$HOME/.local/share"
+XDG_STATE_HOME = "$HOME/.local/state"
+
+[zsh.env.custom]
+DEV = "$HOME/Dev"
+
+DOCS = "$DEV/Docs"
+PROJECTS = "$DEV/Projects"
+RESOURCES = "$DEV/Resources"
+SCRIPTS = "$DEV/Scripts"
+TOOLS = "$DEV/Tools"
+
+OSS_PROJECTS = "$PROJECTS/OSS"
+PERSONAL_PROJECTS = "$PROJECTS/Personal"
+SANDBOX_PROJECTS = "$PROJECTS/Sandbox"
+TEMPLATES_PROJECTS = "$PROJECTS/Templates"
+WORK_PROJECTS = "$PROJECTS/Work"

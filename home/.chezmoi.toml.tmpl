@@ -1,3 +1,11 @@
+[merge]
+    command = "bash"
+    args = [
+        "-c",
+        {{ printf "%q" "cp {{ .Target }} {{ .Target }}.base && code --new-window --wait --merge {{ .Destination }} {{ .Target }} {{ .Target }}.base {{ .Source }}" }},
+    ]
+
+{{ "" }}
 {{/* boolean feature tags */}}
 {{- $is_ephemeral := false -}} {{- /* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_headless := false -}} {{- /* true if this machine does not have a screen and keyboard */}}
@@ -29,24 +37,24 @@
 
 {{- if stdinIsATTY -}}
 {{-   if $is_ephemeral -}}
-{{-     $is_ephemeral = promptBoolOnce . "ephemeral" "It looks like you are running in an ephemeral environment (e.g. a cloud or VM instance). Is this correct?" -}}
+{{-     $is_ephemeral = promptBoolOnce . "is_ephemeral" "It looks like you are running in an ephemeral environment (e.g. a cloud or VM instance). Is this correct?" -}}
 {{-   else -}}
-{{-     $is_ephemeral = promptBoolOnce . "ephemeral" "Are you running in an ephemeral environment? (e.g. a cloud or VM instance)" -}}
+{{-     $is_ephemeral = promptBoolOnce . "is_ephemeral" "Are you running in an ephemeral environment? (e.g. a cloud or VM instance)" -}}
 {{-   end -}}
 {{-   if $is_headless -}}
-{{-     $is_headless = promptBoolOnce . "headless" "It looks like you are running in a headless environment (no screen and keyboard, only ssh or terminal). Is this correct?" -}}
+{{-     $is_headless = promptBoolOnce . "is_headless" "It looks like you are running in a headless environment (no screen and keyboard, only ssh or terminal). Is this correct?" -}}
 {{-   else -}}
-{{-     $is_headless = promptBoolOnce . "headless" "Are you running in a headless environment? (no screen and keyboard, only ssh or terminal)" -}}
+{{-     $is_headless = promptBoolOnce . "is_headless" "Are you running in a headless environment? (no screen and keyboard, only ssh or terminal)" -}}
 {{-   end -}}
 {{-   if $is_personal -}}
-{{-     $is_personal = promptBoolOnce . "personal" "It looks like you are running on a personal machine. Is this correct?" -}}
+{{-     $is_personal = promptBoolOnce . "is_personal" "It looks like you are running on a personal machine. Is this correct?" -}}
 {{-   else -}}
-{{-     $is_personal = promptBoolOnce . "personal" "Are you running on a personal machine?" -}}
+{{-     $is_personal = promptBoolOnce . "is_personal" "Are you running on a personal machine?" -}}
 {{-   end -}}
 {{-   if $is_work -}}
-{{-     $is_work = promptBoolOnce . "work" "It looks like you are running on a work machine. Is this correct?" -}}
+{{-     $is_work = promptBoolOnce . "is_work" "It looks like you are running on a work machine. Is this correct?" -}}
 {{-   else -}}
-{{-     $is_work = promptBoolOnce . "work" "Are you running on a work machine?" -}}
+{{-     $is_work = promptBoolOnce . "is_work" "Are you running on a work machine?" -}}
 {{-   end -}}
 {{- else -}}
 {{-   $is_ephemeral = true -}}
@@ -58,6 +66,7 @@
 {{- $full_name := promptStringOnce . "full_name" "What is your full name?" -}}
 {{- $personal_email := promptStringOnce . "personal_email" "What is your personal email?" -}}
 {{- $work_email := promptStringOnce . "work_email" "What is your work email?" -}}
+{{ "" }}
 
 [data]
     is_ephemeral = {{ $is_ephemeral }}
@@ -69,10 +78,3 @@
     full_name = {{ $full_name | quote }}
     personal_email = {{ $personal_email | quote }}
     work_email = {{ $work_email | quote }}
-
-[merge]
-command = "bash"
-args = [
-    "-c",
-    {{ printf "%q" "cp {{ .Target }} {{ .Target }}.base && code --new-window --wait --merge {{ .Destination }} {{ .Target }} {{ .Target }}.base {{ .Source }}" }},
-]

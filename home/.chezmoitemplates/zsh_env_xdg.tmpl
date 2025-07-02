@@ -1,0 +1,5 @@
+{{- $zsh_env_xdg := .zsh.env.xdg -}}
+{{- range $key, $value := $zsh_env_xdg -}}
+export {{ $key }}="{{ $value }}"
+{{ "" }}
+{{- end -}}
