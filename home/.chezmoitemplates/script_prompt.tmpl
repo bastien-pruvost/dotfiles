@@ -4,31 +4,33 @@
 script_prompt() {
     local script_name="$1"
     local script_description="$2"
-
+    echo
     echo "--------------------------------"
     echo
-    echo "Now the following script will be executed:"
+    echo "The $script_name script will be executed"
+    echo "$script_description"
     echo
-    echo "Script: $script_name"
-    echo "Description: $script_description"
+    echo "You can run the script, skip it, or quit all the installation process"
     echo
     read -n 1 -s -r -p "Press (r)un, (s)kip, or (q)uit: " choice
+    echo
     echo
 
     case $choice in
         r|R|'')
-            return 0  # Continue
+            echo "Running $script_name script..."
+            return 0
             ;;
         s|S)
-            echo "Skipping $script_name" # Skipping the script
+            echo "Skipping $script_name script..."
             exit 0
             ;;
         q|Q)
-            echo "Quitting" # Quitting the script
+            echo "Stopping the installation process..."
             exit 1
             ;;
         *)
-            echo "Invalid choice. Skipping $script_name" # Invalid choice, skipping the script
+            echo "Invalid choice. Skipping $script_name script..."
             exit 0
             ;;
     esac

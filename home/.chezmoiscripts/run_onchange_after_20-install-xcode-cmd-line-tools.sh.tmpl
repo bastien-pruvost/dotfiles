@@ -4,6 +4,12 @@ set -eufo pipefail
 
 {{ template "script_prompt.tmpl" . }}
 
-script_prompt "Xcode Command Line Tools Installation" "This script will install Xcode Command Line Tools"
+script_prompt "Xcode Command Line Tools Installation" "This script will install Xcode Command Line Tools if not installed"
 
-xcode-select --install
+if ! xcode-select --version &> /dev/null; then
+  echo "Installing Xcode Command Line Tools..."
+  xcode-select --install || true
+  echo "Xcode Command Line Tools installed ✔︎"
+else
+  echo "Xcode Command Line Tools already installed ✔︎"
+fi

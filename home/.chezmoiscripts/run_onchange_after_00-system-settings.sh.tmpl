@@ -4,37 +4,38 @@ set -eufo pipefail
 
 {{ template "script_prompt.tmpl" . }}
 
-script_prompt "System Settings" "This script will configure the Mac OS system settings from the source directory"
+script_prompt "System Settings" "This script will configure some Mac OS system settings from chezmoi source directory"
 
 # System settings
 
 # Take screenshots as jpg (usually smaller size) and not png
-defaults write com.apple.screencapture type jpg
+defaults write com.apple.screencapture type jpg || true;
 
 # Do not open previous previewed files (e.g. PDFs) when opening a new one
-defaults write com.apple.Preview ApplePersistenceIgnoreState YES
+defaults write com.apple.Preview ApplePersistenceIgnoreState YES || true;
 
 # Show hidden files
-defaults write com.apple.finder AppleShowAllFiles YES
+defaults write com.apple.finder AppleShowAllFiles YES || true;
 
 # Show path bar
-defaults write com.apple.finder ShowPathbar -bool true
+defaults write com.apple.finder ShowPathbar -bool true || true;
 
 # Show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
+defaults write com.apple.finder ShowStatusBar -bool true || true;
 
 # Disable mouse acceleration
-defaults write NSGlobalDomain com.apple.mouse.linear -bool true
+# defaults write NSGlobalDomain com.apple.mouse.linear -bool true || true;
 
 # Shorter Dock autohide animation duration
-defaults write com.apple.dock "autohide-time-modifier" -float "0.25"
+defaults write com.apple.dock "autohide-time-modifier" -float "0.25" || true;
 
 # Remove the Dock autohide delay
-defaults write com.apple.dock "autohide-delay" -float "0"
+defaults write com.apple.dock "autohide-delay" -float "0" || true;
 
 # Disable rich text by default for TextEdit
-defaults write com.apple.TextEdit "RichText" -bool "false" && killall TextEdit
+defaults write com.apple.TextEdit "RichText" -bool "false";
 
-# Restart Finder and Dock
-killall Finder;
-killall Dock;
+# Restart all necessary apps
+killall -q TextEdit || true;
+killall -q Finder || true;
+killall -q Dock || true;
