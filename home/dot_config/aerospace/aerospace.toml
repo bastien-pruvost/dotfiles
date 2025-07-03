@@ -293,10 +293,6 @@ run = 'move-node-to-workspace 9'
 if.app-name-regex-substring = 'Notion Calendar' # Notion Calendar
 run = 'move-node-to-workspace 9'
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'Calendar - OpenStudio' # OpenStudio Calendar
-run = 'move-node-to-workspace 9'
-
 # Conference = L
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'    # Discord
