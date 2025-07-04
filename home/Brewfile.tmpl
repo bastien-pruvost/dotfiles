@@ -57,7 +57,7 @@ brew "cocoapods"
 brew "watchman"
 # brew "fastlane"
 
-{{ if .is_work }}
+{{ if .is_work_device }}
 # PHP development (CLI)
 brew "dnsmasq"
 brew "httpd"
@@ -100,7 +100,7 @@ cask "todoist-app"
 # Communication tools (Apps)
 cask "cameracontroller"
 cask "discord"
-{{ if .is_work }}
+{{ if .is_work_device }}
 cask "mattermost"
 cask "microsoft-teams"
 {{ end }}
@@ -108,7 +108,7 @@ cask "microsoft-teams"
 # Media (Apps)
 cask "spotify"
 cask "vlc"
-{{ if .is_personal }}
+{{ if .is_personal_device }}
 cask "iptvnator"
 cask "transmission"
 {{ end }}
@@ -116,6 +116,6 @@ cask "transmission"
 # Mac App Store Applications
 mas "Bitwarden", id: 1352778147
 mas "TestFlight", id: 899247664
-{{ if .is_work }}
+{{ if .is_work_device }}
 mas "Wireguard", id: 1451685025
 {{ end }}
