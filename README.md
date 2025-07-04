@@ -50,100 +50,114 @@ This README is an opinionated guide to install a clean MacOS development environ
    - _Settings > General > Sharing_ (LocalHostName)
    - Restart you mac.
 
-## Update MacOS
+## Set the default finder view
 
-> [!WARNING]
-> Avoid updating if the latest version is newly released and potentially unstable.
+1. Open Finder.
+2. Set the preferred view (List, Column, etc.)
+3. Go to `View > Show view options`.
+4. Check "Always open in [selected] view".
+5. Click "Use as Defaults" (applies to all folders of the same kind).
+6. Optional: Reset finder preferences:
 
-Update macOS to the latest stable version with the following command:
+   ```bash
+   defaults delete com.apple.finder
+   killall Finder
+   ```
 
-```bash
-softwareupdate --install --recommended --restart
-```
+## Update MacOS and App Store apps
 
-## Update App Store apps
+1. Update macOS to the latest stable version _(optional but recommended) with the following command_:
 
-Update all App Store apps manually, and delete unused apps if needed.
+   ⚠️ **_Avoid updating if the latest version is newly released and potentially unstable._**
 
-## MacOS System Settings
+   ```bash
+   softwareupdate --install --recommended --restart
+   ```
 
-- Appearance
-  - Light Mode
-  - Show Scroll Bars -> "Always"
-- Dock
+2. Update all App Store apps manually, and delete unused apps if needed _(optional but recommended)._
 
-  - Remove all applications from Dock
-  - Automatic Hide
-  - Smaller Dock
-  - "Show recent applications in Dock" -> off
-  - "Show indicators for open applications" -> on
-  - Battery -> "Show Percentage"
+## Agree to license
 
-- Display
-  - Nightshift
-- Security
-  - Touch ID
-- Notifications
-  - Off, except for Calendar
-- Siri
-  - Disabled
-- Trackpad
-  - Tap to Click
-  - Point & Click -> Look up & data detectors off
-  - More Gestures -> Notification Centre off
-- Keyboard
-  - Text
-    - disable "Capitalise word automatically"
-    - disable "Add full stop with double-space"
-    - disable "Use smart quotes and dashes"
-    - use `"` for double quotes
-    - use `'` for single quotes
-  - Keyboard -> Mission Control -> disable all
-  - Press FN to -> "Do Nothing"
-  - Keyboard Shortcuts -> Spotlight -> CMD + Space disable
-    - We will be using Raycast instead
-- Mission Control
-  - Hot Corners: disable all
-- Finder
-  - General
-    - New Finder windows show: [Downloads]
-    - Show these items on the desktop: disable all
-  - Sidebar:
-    - activate all Favorites
-    - move Library to Favorites
-  - Show only:
-    - Desktop
-    - Downloads
-    - Documents
-    - [User]
-    - Library
-  - Tags
-    - disable all
-  - Advanced
-    - Show all Filename Extensions
-    - Remove Items from Bin after 30 Days
-    - View -> Show Preview (e.g. image files)
-- Sharing
-  - "Change computer name"
-  - "Make sure all file sharing is disabled"
-- Security and Privacy
-  - Turn on FileVault
-  - Add Browser to "Screen Recording"
-- Storage
-  - Remove Garage Band & Sound Library
-  - Remove iMovie
-- Trackpad
-  - Speed: Max
-- Accessibility
-  - Scroll Speed: Max
+`sudo softwareupdate --agree-to-license --install-rosetta`
 
-## Initialize chezmoi
+## MacOS system settings
 
-Initializing chezmoi will:
+- System Settings
+  - Appearance
+    - Auto
+    - Show Scroll Bars -> "Always"
+  - Dock
+    - Remove all applications from Dock
+    - Automatic Hide
+    - Smaller Dock
+    - "Show recent applications in Dock" -> off
+    - "Show indicators for open applications" -> on
+    - Battery -> "Show Percentage"
+  - Display
+    - Nightshift
+  - Security
+    - Touch ID
+  - Notifications
+    - Off, except for Calendar
+  - Siri
+    - Disabled
+  - Trackpad
+    - Tap to Click
+    - Point & Click -> Look up & data detectors off
+    - More Gestures -> Notification Centre off
+  - Keyboard
+    - Text
+      - disable "Capitalise word automatically"
+      - disable "Add full stop with double-space"
+      - disable "Use smart quotes and dashes"
+      - use `"` for double quotes
+      - use `'` for single quotes
+    - Keyboard -> Mission Control -> disable all
+    - Press FN to -> "Do Nothing"
+    - Keyboard Shortcuts -> Spotlight -> CMD + Space disable
+      - We will be using Raycast instead
+  - Mission Control
+    - Hot Corners: disable all
+  - Finder
+    - General
+      - New Finder windows show: [Downloads]
+      - Show these items on the desktop: disable all
+    - Sidebar:
+      - activate all Favorites
+      - move Library to Favorites
+    - Show only:
+      - Desktop
+      - Downloads
+      - Documents
+      - [User]
+      - Library
+    - Tags
+      - disable all
+    - Advanced
+      - Show all Filename Extensions
+      - Remove Items from Bin after 30 Days
+      - View -> Show Preview (e.g. image files)
+  - Sharing
+    - Change computer name
+    - Make sure all file sharing is disabled
+  - Security and Privacy
+    - Turn on FileVault
+    - Add Browser to "Screen Recording"
+  - Storage
+    - Remove Garage Band & Sound Library
+    - Remove iMovie
+  - Trackpad
+    - Speed: Max
+  - Accessibility
+    - Scroll Speed: Max
+
+## **Initialize `chezmoi` and sync .dotfiles**
+
+It will :
 
 - Sync dotfiles
-- Setup some default system settings
-- Install homebrew and all packages
+- Set some defaults settings
+- Install Homebrew and all packages from Brewfile
 - Install Xcode Command Line Tools
 
 Initialize chezmoi with this command:
@@ -350,3 +364,108 @@ Now the GPG Key should be correctly configured.
 3. On github, navigate to the commits list of your repository. And you should see the “Verified” badge next to your commit :
 
    ![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/4bbd5c81-65df-4417-ad07-662f9cfb14a7/890576a2-b640-411d-a532-d060a0cc12db/image.png)
+
+---
+
+## Other installations
+
+### Standalone apps
+
+- Akko Cloud Driver (for Akko keyboard)
+
+### Chrome extensions
+
+- Bitwarden
+- Css Peeper
+- Dark Reader
+- Detailed SEO
+- GoFullPage
+- JSON Formatter
+- [Localhost](http://Localhost) Open Graph Tester
+- (MetaMask)
+- (Rabby Wallet)
+- Raindrop.io
+- React Developer Tools
+- Tag Assistant
+- Todoist for Chrome
+- uBlock Origin / uBlock Origin Lite
+- Wappalyzer
+- Wave
+- What Font
+
+### VSCode Extensions
+
+- Auto Rename Tag
+- C/C++
+- EditorConfig
+- Error Lens
+- ESLint
+- Even Better TOML
+- GitLens
+- Material Icon Theme
+- Mintlify
+- One Dark Pro
+- Paste JSON as Code
+- Path Intellisence
+- PostCSS
+- Prettier
+- Pretty Typescript Errors
+- Project Manager
+- Pylance
+- Python
+- Remote - SSH
+- Remote Explorer
+- Ruff
+- SVG Preview
+- Tailwind CSS IntelliSense
+- Template String Converter
+- Todo Tree
+- Version Lens
+- YAML
+- Live Server
+
+## Applications settings
+
+- **Built-in apps**
+
+  - **Apple Mail**
+    - Add accounts
+    - Show most recent message at top
+    - Set “undo send delay”
+  - **Apple Calendar**
+    - Add accounts
+  - Apple Contacts
+    - Add accounts
+  - **iMessage**
+    - Sync iCloud for iMessages just for the sake of syncing, then disable iCloud again
+    - Sync contacts on iCloud
+    - iPhone: activate message forwarding to new Mac
+  - **Notes**
+    - New notes start with: Body
+    - Settings -> Disable: Group notes by date
+
+- **Other apps**
+  - **iTerm**
+    - General > Settings > Load settings from a custom folder > `~/.config/iterm2`
+  - **Raycast**
+    - Import settings from dotfiles
+  - **Bitwarden**
+    - ..
+  - **Brave Browser / Chrome**
+    - Add extensions
+    - …
+  - Cursor / VSCode
+    - …
+  - **OrbStack**
+    - …
+  - Screaming Frog SEO
+    - Set database folder
+  - Logi Options +
+    - …
+  - XCodes App
+    - …
+  - Raindrop
+    - …
+  - ImageOptim
+    - …
+  -
