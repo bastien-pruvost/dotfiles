@@ -31,7 +31,9 @@ This README is an opinionated guide to install a clean MacOS development environ
 
 2. **After MacOS setup**
 
-   - Settings > General > Sharing (LocalHostName) = john-personal-mbp
+   - Settings > General > About > Name = john-personal-mbp
+
+   - Settings > General > Sharing > LocalHostName = john-personal-mbp
 
    - Set all names explicitly via Terminal:
 
