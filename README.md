@@ -88,73 +88,117 @@ This README is an opinionated guide to install a clean MacOS development environ
 ## MacOS system settings
 
 - System Settings
+  - User (Apple Account)
+    - Check personal infos
+    - Setup iCloud sync (disable most options)
+    - etc.
+  - Wi-Fi
+    - Ask to join hotspots > off
+  - General
+    - Software Updates
+      - Disable all automatic updates (except Security Responses)
+    - AutoFill & Passwords
+      - Check AutoFill from ? Bitwarden ? after BW install
+  - Accessibility
+    - Pointer Control > Trackpad options > Scroll speed > 5/7
+    - Pointer Control > Mouse options > Scroll speed > 5/7
   - Appearance
     - Auto
-    - Show Scroll Bars -> "Always"
-  - Dock
-    - Remove all applications from Dock
-    - Automatic Hide
-    - Smaller Dock
-    - "Show recent applications in Dock" -> off
-    - "Show indicators for open applications" -> on
-    - Battery -> "Show Percentage"
-  - Display
-    - Nightshift
+    - Show Scroll Bars > "Always"
+  - Apple Intelligence & Siri
+    - Turn off both
+  - Control Center
+    - Battery > Show Percentage
+    - Spotlight > Don't show in Menu Bar
+  - Desktop & Dock
+    - Dock
+      - _Remove all applications from Dock_
+      - Adjust dock size (smaller)
+      - Minimize windows using > "Scale Effect"
+      - Double-click a window's title bar to > "Do nothing"
+      - Minimize windows into application icon > on
+      - Automatically hide an show the dock > on
+      - Show suggested and recent apps in Dock -> off
+    - Windows
+      - Drag windows to screen edges to tile > off
+      - Drag windows to menu bar to fill screen > off
+      - Hold ⌥ key while dragging windows to tile > off
+    - Mission Control
+      - Automatically rearrange Spaces based on most recent use > off
+      - Drag windows to top of screento enter Mission Control > off
+    - Hot Corners > Disable all
+  - Displays
+    - True Tone > off
+  - Spotlight
+    - Help Apple Improve Search > off
+  - Sound
+    - Play sound on startup > off
   - Security
     - Touch ID
   - Notifications
-    - Off, except for Calendar
-  - Siri
-    - Disabled
-  - Trackpad
-    - Tap to Click
-    - Point & Click -> Look up & data detectors off
-    - More Gestures -> Notification Centre off
+    - Disable most app notifications
+  - Lock Screen
+    - Screen saver > 2 minutes
+    - Display off on battery > 2 minutes
+    - Display off on power > 10 minutes
+    - Require password after > 5 minutes
+    - Show large clock > "On Screen saver and Lock screen"
+  - Privacy & Security
+    - Location Services
+      - Siri > off
+      - System Services
+        - Suggestions & Search > off
+        - Mac Analytics > off
+    - Apple Intelligence Report > off
+    - FileVault > On
+  - Touch ID & Password
+    - Set 3 fingers
+  - Game Center > Sign Out
+  - Wallet & Apple Pay
+    - Setup if needed
   - Keyboard
-    - Text
-      - disable "Capitalise word automatically"
-      - disable "Add full stop with double-space"
-      - disable "Use smart quotes and dashes"
-      - use `"` for double quotes
-      - use `'` for single quotes
-    - Keyboard -> Mission Control -> disable all
-    - Press FN to -> "Do Nothing"
-    - Keyboard Shortcuts -> Spotlight -> CMD + Space disable
-      - We will be using Raycast instead
-  - Mission Control
-    - Hot Corners: disable all
-  - Finder
-    - General
-      - New Finder windows show: [Downloads]
-      - Show these items on the desktop: disable all
-    - Sidebar:
-      - activate all Favorites
-      - move Library to Favorites
-    - Show only:
-      - Desktop
-      - Downloads
-      - Documents
-      - [User]
-      - Library
-    - Tags
-      - disable all
-    - Advanced
-      - Show all Filename Extensions
-      - Remove Items from Bin after 30 Days
-      - View -> Show Preview (e.g. image files)
-  - Sharing
-    - Change computer name
-    - Make sure all file sharing is disabled
-  - Security and Privacy
-    - Turn on FileVault
-    - Add Browser to "Screen Recording"
-  - Storage
-    - Remove Garage Band & Sound Library
-    - Remove iMovie
+    - Key repeat rate > Maximum (fast)
+    - Delay until repeat > Maximum (short)
+    - Press 'globe' key to > "Do nothing"
+    - Keyboard shortcuts
+      - Mission Control > Mission Control > Turn off everything
+      - Spotlight > Turn off everything
+    - Text input > Add "French - Numerical"
+    - Text input > Edit > All input sources
+      - Correct spelling > off
+      - Capitalize words > off
+      - Show inline predictive text > off
+      - Add period with double-space > off
+      - Use smart quotes and dashes > off
+      - For double quotes > `"`
+      - For single quotes > `'`
   - Trackpad
-    - Speed: Max
-  - Accessibility
-    - Scroll Speed: Max
+    - Point & Click
+      - Tracking speed > 7/9
+      - Click > "Light"
+      - Look up & data detectors > off
+      - Tap to Click > on
+    - Scroll & Zoom
+      - Smart zoom > off
+- Finder
+  - General
+    - New Finder windows show: [Downloads]
+    - Show these items on the desktop: disable all
+  - Sidebar:
+    - activate all Favorites
+    - move Library to Favorites
+  - Show only:
+    - Desktop
+    - Downloads
+    - Documents
+    - [User]
+    - Library
+  - Tags
+    - disable all
+  - Advanced
+    - Show all Filename Extensions
+    - Remove Items from Bin after 30 Days
+    - View -> Show Preview (e.g. image files)
 
 ## **Initialize `chezmoi` and sync .dotfiles**
 
