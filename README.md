@@ -76,7 +76,7 @@ This README is an opinionated guide to install a clean MacOS development environ
    ⚠️ **_Avoid updating if the latest version is newly released and potentially unstable._**
 
    ```bash
-   softwareupdate --install --recommended --restart
+   sudo softwareupdate --install --recommended --restart
    ```
 
 2. Update all App Store apps manually, and delete unused apps if needed _(optional but recommended)._
