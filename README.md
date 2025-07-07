@@ -31,6 +31,8 @@ This README is an opinionated guide to install a clean MacOS development environ
 
 2. **After MacOS setup**
 
+   - Settings > General > Sharing (LocalHostName) = john-personal-mbp
+
    - Set all names explicitly via Terminal:
 
      ```bash
@@ -45,9 +47,10 @@ This README is an opinionated guide to install a clean MacOS development environ
      - _Settings > Users & Groups_
      - _Settings > [Your Name] (Apple ID)_
 
-3. **Double-check/set names in:**
-   - _Settings > General > About > Name_ (ComputerName)
-   - _Settings > General > Sharing_ (LocalHostName)
+4. **Double-check/set names in:**
+   - _Settings > General > About > Name_ (ComputerName).
+   - _Settings > General > Sharing_ (LocalHostName).
+   - Make sure all file sharing are disabled.
    - Restart you mac.
 
 ## Set the default finder view
