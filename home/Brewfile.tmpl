@@ -11,11 +11,9 @@ cask "logi-options+"
 cask "mos"
 cask "nikitabobko/tap/aerospace"
 cask "raycast"
-cask "stats"
 
 # Utilities (CLI)
 brew "chezmoi"
-brew "displayplacer"
 brew "FelixKratz/formulae/borders"
 brew "mas"
 
@@ -88,7 +86,7 @@ cask "google-chrome"
 cask "microsoft-edge"
 
 # Productivity tools (Apps)
-{{ if eq .chezmoi.arch "arm" }}
+{{ if eq .chezmoi.arch "arm64" }}
 cask "chatgpt"
 {{ end }}
 cask "google-drive"
