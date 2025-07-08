@@ -3,8 +3,8 @@
 This repository is managed with [chezmoi](https://github.com/twpayne/chezmoi) and contains configuration files for my development environment.
 
 > [!NOTE]
-> My dev environment is focused on web, mobile and software development, it suits my needs and preferences.
-> You can use this repository as a reference or as a starting point for your own dotfiles.
+> My dev environment is focused on web, mobile and software development, it suits my needs and preferences.  
+> You can use this repository as a reference or as a starting point for your own dotfiles.  
 > It's up to you to decide what you want to keep or remove and make the necessary adjustments to suit your needs.
 
 # Installation guide
@@ -14,7 +14,7 @@ This repository is managed with [chezmoi](https://github.com/twpayne/chezmoi) an
 This README is an opinionated guide to install a clean MacOS development environment.
 
 > [!IMPORTANT]
-> Everytime you are prompted to setup a passphrase or password, make sure to use a strong and secure one and store it in a secure place.
+> Everytime you are prompted to setup a passphrase or password, make sure to use a strong and secure one and store it in a secure place.  
 > Password managers are a good option to generate and store secure passwords.
 
 ## Setting up MacOS names
@@ -200,8 +200,16 @@ This README is an opinionated guide to install a clean MacOS development environ
     - When performing a search > "Search Current Folder"
 - Finder > View
   - Show Preview
+ 
+## Install Command Line Tools
 
-## **Initialize `chezmoi` and sync .dotfiles**
+Install the Command Line Tools with the following command:
+
+```bash
+xcode-select --install
+```
+
+## Initialize `chezmoi` and sync dotfiles
 
 It will :
 
