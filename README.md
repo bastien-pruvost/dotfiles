@@ -180,25 +180,26 @@ This README is an opinionated guide to install a clean MacOS development environ
       - Tap to Click > on
     - Scroll & Zoom
       - Smart zoom > off
-- Finder
+- Finder > Settings
   - General
-    - New Finder windows show: [Downloads]
     - Show these items on the desktop: disable all
-  - Sidebar:
-    - activate all Favorites
-    - move Library to Favorites
-  - Show only:
-    - Desktop
-    - Downloads
-    - Documents
-    - [User]
-    - Library
+    - New Finder windows show: [User]
   - Tags
-    - disable all
+    - Disable all Tags
+  - Sidebar:
+    - Activate Recents, Desktop, Documents, Downloads, [User]
+    - Disable all iCloud
+    - Activate all locations except [Computer]
+    - Move Dev to Favorites in Sidebar
+    - Disable all Tags
   - Advanced
-    - Show all Filename Extensions
-    - Remove Items from Bin after 30 Days
-    - View -> Show Preview (e.g. image files)
+    - Show all filename extensions > on
+    - Keep folders on top
+      - In windows when sorting by name > on
+      - On Desktop > on
+    - When performing a search > "Search Current Folder"
+- Finder > View
+  - Show Preview
 
 ## **Initialize `chezmoi` and sync .dotfiles**
 
