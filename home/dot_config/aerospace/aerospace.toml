@@ -111,8 +111,11 @@ slash = 'period'
 equal = 'slash'
 # backslash = '' # Not used in AZERTY FR
 
+[exec.env-vars]
+    PATH = '/opt/homebrew/bin:/usr/local/bin:${PATH}'
+
 [exec]
-inherit-env-vars = false
+inherit-env-vars = true
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -146,8 +149,8 @@ ctrl-shift-up = 'move up'
 ctrl-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-ctrl-left = '''exec-and-forget /usr/local/bin/aerospace workspace "$(/usr/local/bin/aerospace list-workspaces --monitor mouse --visible)" && /usr/local/bin/aerospace workspace prev'''
-ctrl-right = '''exec-and-forget /usr/local/bin/aerospace workspace "$(/usr/local/bin/aerospace list-workspaces --monitor mouse --visible)" && /usr/local/bin/aerospace workspace next'''
+ctrl-left = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace workspace prev'''
+ctrl-right = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace workspace next'''
 
 # Previous and next monitor
 # ctrl-up = 'focus-monitor prev --wrap-around'
