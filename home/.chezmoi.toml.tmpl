@@ -1,9 +1,9 @@
 [merge]
-    command = "bash"
-    args = [
-        "-c",
-        {{ printf "%q" "cp {{ .Target }} {{ .Target }}.base && code --new-window --wait --merge {{ .Destination }} {{ .Target }} {{ .Target }}.base {{ .Source }}" }},
-    ]
+command = "bash"
+args = [
+  "-c",
+  'cp {{ `"{{ .Target }}"` }} {{ `"{{ .Target }}"` }}.base && code --wait --new-window --merge {{ `"{{ .Destination }}"` }} {{ `"{{ .Target }}"` }} {{ `"{{ .Target }}"` }}.base {{ `"{{ .Source }}"` }}',
+]
 
 {{ "" }}
 {{/* boolean feature tags */}}
