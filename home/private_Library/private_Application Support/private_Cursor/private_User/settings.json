@@ -2,15 +2,19 @@
   // ----- VSCode / Cursor -----
 
   // Theme
-  "workbench.colorTheme": "One Dark Pro",
+  "window.autoDetectColorScheme": true,
+  "workbench.colorTheme": "GitHub Light Default",
+  "workbench.preferredLightColorTheme" : "GitHub Light Default",
+  "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
   "workbench.iconTheme": "material-icon-theme",
-  "material-icon-theme.activeIconPack": "none",
+  "material-icon-theme.activeIconPack": "react",
   "material-icon-theme.saturation": 0.75,
+
 
   // Typography
   "editor.fontFamily": "CommitMono Nerd Font, Menlo, Monaco, Courier New, monospace",
   "editor.fontSize": 13,
-  "editor.fontWeight": "normal",
+  "editor.fontWeight": 400,
   "editor.letterSpacing": 0,
   "editor.lineHeight": 1.7,
   "terminal.integrated.fontFamily": "CommitMono Nerd Font, Menlo, Monaco, Courier New, monospace",
@@ -20,45 +24,49 @@
   // UI / UX
   "window.commandCenter": true,
   "workbench.activityBar.location": "top",
-  "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.labelFormat": "short",
+  "workbench.editor.highlightModifiedTabs": true,
   "workbench.tree.indent": 14,
   "explorer.autoReveal": false,
   "explorer.compactFolders": false,
-  // "explorer.sortOrder": "filesFirst",
+  "editor.colorDecorators": false,
+  "editor.bracketPairColorization.enabled": false,
   "editor.hover.delay": 500,
   "editor.wordWrapColumn": 120,
   "editor.padding.top": 8,
-  "editor.cursorBlinking": "smooth",
+  "editor.cursorBlinking": "phase",
   "workbench.startupEditor": "none",
   "editor.accessibilitySupport": "off",
   "editor.unicodeHighlight.allowedLocales": {
     "en": true,
     "fr": true
   },
-  "extensions.ignoreRecommendations": true,
-  "telemetry.telemetryLevel": "off",
   "security.workspace.trust.untrustedFiles": "open",
   "typescript.suggest.autoImports": true,
   "javascript.suggest.autoImports": true,
+
+  // Core
+    "editor.linkedEditing": true,
+
+    "security.promptForLocalFileProtocolHandling": false,
 
   // Terminal
   "terminal.integrated.defaultProfile.osx": "zsh",
 
   // Silence the noise
+  "breadcrumbs.enabled": false,
   "workbench.tips.enabled": false,
   "workbench.editor.enablePreviewFromQuickOpen": false,
-  "breadcrumbs.enabled": false,
   "editor.guides.indentation": false,
   "editor.lightbulb.enabled": "off",
   "editor.minimap.enabled": false,
   "editor.overviewRulerBorder": false,
-  // "editor.selectionHighlight": false,
+  "editor.selectionHighlight": true,
   "editor.occurrencesHighlight": "multiFile",
-  // "editor.renderLineHighlight": "none",
-  "editor.matchBrackets": "always",
-  "editor.renderControlCharacters": false,
+  "editor.renderLineHighlight": "line",
+  "editor.renderControlCharacters": true,
   "editor.hideCursorInOverviewRuler": true,
+  "extensions.ignoreRecommendations": true,
   "scm.diffDecorations": "none",
   "git.decorations.enabled": false,
   "files.exclude": {
@@ -70,6 +78,9 @@
     "**/Thumbs.db": true,
     "**/__pycache__": true
   },
+  "telemetry.telemetryLevel": "off",
+
+
   // Suggestions
   // "editor.quickSuggestions": {
   //   "strings": "on",
@@ -86,6 +97,25 @@
   "cursor.composer.shouldAllowCustomModes": true,
   "cursor.composer.shouldAutoScrollToBottom": false,
   "cursor.composer.shouldChimeAfterChatFinishes": true,
+  "cursor.general.globalCursorIgnoreList": [
+    "**/.env",
+    "**/.env.*",
+    "**/credentials.json",
+    "**/credentials.*.json",
+    "**/secret.json",
+    "**/secrets.json",
+    "**/*.key",
+    "**/*.pem",
+    "**/*.pfx",
+    "**/*.p12",
+    "**/*.crt",
+    "**/*.cer",
+    "**/id_rsa",
+    "**/id_dsa",
+    "**/.ssh/id_*",
+    "**/*.env.*",
+    "**/.sentryclirc"
+  ],
 
   // Git / Gitlens
   "git.autofetch": true,
@@ -179,27 +209,5 @@
   },
 
   // --- Unsorted ---
-  "workbench.colorCustomizations": {},
-  "cursor.general.globalCursorIgnoreList": [
-    "**/.env",
-    "**/.env.*",
-    "**/credentials.json",
-    "**/credentials.*.json",
-    "**/secret.json",
-    "**/secrets.json",
-    "**/*.key",
-    "**/*.pem",
-    "**/*.pfx",
-    "**/*.p12",
-    "**/*.crt",
-    "**/*.cer",
-    "**/id_rsa",
-    "**/id_dsa",
-    "**/.ssh/id_*",
-    "**/*.env.*",
-    "**/.sentryclirc"
-  ],
-  "editor.linkedEditing": true,
-  "editor.colorDecorators": false,
-  "security.promptForLocalFileProtocolHandling": false
+
 }
