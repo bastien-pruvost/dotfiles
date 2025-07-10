@@ -3,8 +3,8 @@
 This repository is managed with [chezmoi](https://github.com/twpayne/chezmoi) and contains configuration files for my development environment.
 
 > [!NOTE]
-> My dev environment is focused on web, mobile and software development, it suits my needs and preferences.  
-> You can use this repository as a reference or as a starting point for your own dotfiles.  
+> My dev environment is focused on web, mobile and software development, it suits my needs and preferences.
+> You can use this repository as a reference or as a starting point for your own dotfiles.
 > It's up to you to decide what you want to keep or remove and make the necessary adjustments to suit your needs.
 
 # Installation guide
@@ -14,7 +14,7 @@ This repository is managed with [chezmoi](https://github.com/twpayne/chezmoi) an
 This README is an opinionated guide to install a clean MacOS development environment.
 
 > [!IMPORTANT]
-> Everytime you are prompted to setup a passphrase or password, make sure to use a strong and secure one and store it in a secure place.  
+> Everytime you are prompted to setup a passphrase or password, make sure to use a strong and secure one and store it in a secure place.
 > Password managers are a good option to generate and store secure passwords.
 
 ## Setting up MacOS names
@@ -49,7 +49,7 @@ This README is an opinionated guide to install a clean MacOS development environ
      - _Settings > Users & Groups_
      - _Settings > [Your Name] (Apple ID)_
 
-4. **Double-check/set names in:**
+3. **Double-check/set names in:**
    - _Settings > General > About > Name_ (ComputerName).
    - _Settings > General > Sharing_ (LocalHostName).
    - Make sure all file sharing are disabled.
@@ -87,120 +87,122 @@ This README is an opinionated guide to install a clean MacOS development environ
 
 ## MacOS system settings
 
-- System Settings
-  - User (Apple Account)
-    - Check personal infos
-    - Setup iCloud sync (disable most options)
-    - etc.
-  - Wi-Fi
-    - Ask to join hotspots > off
-  - General
+- **System Settings**
+  - **User (Apple Account)**
+    - _Check personal infos_
+    - _Setup iCloud sync (disable most options)_
+  - **Wi-Fi**
+    - Ask to join hotspots > `off`
+  - **General**
     - Software Updates
-      - Disable all automatic updates (except Security Responses)
+      - _Disable all automatic updates (except Security Responses)_
     - AutoFill & Passwords
-      - Check AutoFill from ? Bitwarden ? after BW install
-  - Accessibility
-    - Pointer Control > Trackpad options > Scroll speed > 5/7
-    - Pointer Control > Mouse options > Scroll speed > 5/7
-  - Appearance
-    - Auto
-    - Show Scroll Bars > "Always"
-  - Apple Intelligence & Siri
-    - Turn off both
-  - Control Center
-    - Battery > Show Percentage
-    - Spotlight > Don't show in Menu Bar
-  - Desktop & Dock
+      - Autofill Passwords and Passkeys > `off`
+      - Autofill from > Passwords > `off`
+  - **Accessibility**
+    - Pointer Control > Trackpad options > Scroll speed > `6/7`
+    - Pointer Control > Mouse options > Scroll speed > `6/7`
+  - **Appearance**
+    - `Auto`
+    - Show Scroll Bars > `Always`
+  - **Apple Intelligence & Siri**
+    - Both > `off`
+  - **Control Center**
+    - Battery > Show Percentage > `on`
+    - Spotlight > `Don't show in Menu Bar`
+  - **Desktop & Dock**
     - Dock
       - _Remove all applications from Dock_
-      - Adjust dock size (smaller)
-      - Minimize windows using > "Scale Effect"
-      - Double-click a window's title bar to > "Do nothing"
-      - Minimize windows into application icon > on
-      - Automatically hide an show the dock > on
-      - Show suggested and recent apps in Dock -> off
+      - _Adjust dock size (smaller)_
+      - Minimize windows using > `Scale Effect`
+      - Double-click a window's title bar to > `Do nothing`
+      - Minimize windows into application icon > `on`
+      - Automatically hide an show the dock > `on`
+      - Show suggested and recent apps in Dock -> `off`
+    - Desktop & Stage Manager
+      - Show Items > On Desktop > `off`
+      - Show Items > On Stage Manager > `off`
+      - Click wallpaper to reveal desktop > `Only in stage manager`
     - Windows
-      - Drag windows to screen edges to tile > off
-      - Drag windows to menu bar to fill screen > off
-      - Hold ⌥ key while dragging windows to tile > off
+      - Drag windows to screen edges to tile > `off`
+      - Drag windows to menu bar to fill screen > `off`
+      - Hold ⌥ key while dragging windows to tile > `off`
     - Mission Control
-      - Automatically rearrange Spaces based on most recent use > off
-      - Drag windows to top of screento enter Mission Control > off
-    - Hot Corners > Disable all
-  - Displays
-    - True Tone > off
-  - Spotlight
-    - Help Apple Improve Search > off
-  - Sound
-    - Play sound on startup > off
-  - Security
-    - Touch ID
-  - Notifications
+      - Automatically rearrange Spaces based on most recent use > `off`
+      - Drag windows to top of screento enter Mission Control > `off`
+    - Hot Corners > _Disable all_
+  - **Displays**
+    - True Tone > `off`
+  - **Spotlight**
+    - Help Apple Improve Search > `off`
+  - **Notifications**
     - Disable most app notifications
-  - Lock Screen
-    - Screen saver > 2 minutes
-    - Display off on battery > 2 minutes
-    - Display off on power > 10 minutes
-    - Require password after > 5 minutes
-    - Show large clock > "On Screen saver and Lock screen"
-  - Privacy & Security
+  - **Sound**
+    - Play sound on startup > `off`
+  - **Lock Screen**
+    - Screen saver > `2 minutes`
+    - Display off on battery > `2 minutes`
+    - Display off on power > `10 minutes`
+    - Require password after > `5 minutes`
+    - Show large clock > `On Screen saver and Lock screen`
+  - **Privacy & Security**
     - Location Services
-      - Siri > off
+      - Siri > `off`
       - System Services
-        - Suggestions & Search > off
-        - Mac Analytics > off
-    - Apple Intelligence Report > off
-    - FileVault > On
-  - Touch ID & Password
+        - Suggestions & Search > `off`
+        - Mac Analytics > `off`
+    - Apple Intelligence Report > `off`
+    - FileVault > `on`
+  - **Touch ID & Password**
     - Set 3 fingers
-  - Game Center > Sign Out
-  - Wallet & Apple Pay
+  - **Game Center** > _Sign Out_
+  - **Wallet & Apple Pay**
     - Setup if needed
-  - Keyboard
-    - Key repeat rate > Maximum (fast)
-    - Delay until repeat > Maximum (short)
-    - Press 'globe' key to > "Do nothing"
+  - **Keyboard**
+    - Key repeat rate > `Maximum (fast)`
+    - Delay until repeat > `Maximum (short)`
+    - Press 'globe' key to > `Do nothing`
     - Keyboard shortcuts
-      - Mission Control > Mission Control > Turn off everything
-      - Spotlight > Turn off everything
-    - Text input > Add "French - Numerical"
+      - Mission Control > Mission Control > _Turn off everything_
+      - Spotlight > _Turn off everything_
+    - Text input > Add `French - Numerical`
     - Text input > Edit > All input sources
-      - Correct spelling > off
-      - Capitalize words > off
-      - Show inline predictive text > off
-      - Add period with double-space > off
-      - Use smart quotes and dashes > off
+      - Correct spelling > `off`
+      - Capitalize words > `off`
+      - Show inline predictive text > `off`
+      - Add period with double-space > `off`
+      - Use smart quotes and dashes > `off`
       - For double quotes > `"`
       - For single quotes > `'`
-  - Trackpad
+  - **Trackpad**
     - Point & Click
-      - Tracking speed > 7/9
-      - Click > "Light"
-      - Look up & data detectors > off
-      - Tap to Click > on
+      - Tracking speed > `7/9`
+      - Click > `Light`
+      - Look up & data detectors > `off`
+      - Tap to Click > `on`
     - Scroll & Zoom
-      - Smart zoom > off
-- Finder > Settings
+      - Smart zoom > `off`
+- **Finder > Settings**
   - General
-    - Show these items on the desktop: disable all
-    - New Finder windows show: [User]
+    - Show these items on the desktop: _disable all_
+    - New Finder windows show: `[User]`
   - Tags
-    - Disable all Tags
+    - _Disable all Tags_
   - Sidebar:
-    - Activate Recents, Desktop, Documents, Downloads, [User]
-    - Disable all iCloud
-    - Activate all locations except [Computer]
-    - Move Dev to Favorites in Sidebar
-    - Disable all Tags
+    - _Activate `Recents`, `Desktop`, `Documents`, `Downloads`, `[User]`_
+    - _Disable all iCloud_
+    - _Activate all locations except `[Computer]`_
+    - _Move Dev to Favorites in Sidebar_
+    - _Disable all Tags_
   - Advanced
-    - Show all filename extensions > on
+    - Show all filename extensions > `on`
     - Keep folders on top
-      - In windows when sorting by name > on
-      - On Desktop > on
-    - When performing a search > "Search Current Folder"
-- Finder > View
-  - Show Preview
- 
+      - In windows when sorting by name > `on`
+      - On Desktop > `on`
+    - When performing a search > `Search Current Folder`
+- **Finder > View**
+  - _Show Preview_
+
 ## Install Command Line Tools
 
 Install the Command Line Tools with the following command:
@@ -425,7 +427,7 @@ Now the GPG Key should be correctly configured.
 
 ---
 
-## Other installations
+## App configurations
 
 ### Standalone apps
 
@@ -439,7 +441,7 @@ Now the GPG Key should be correctly configured.
 - Detailed SEO
 - GoFullPage
 - JSON Formatter
-- [Localhost](http://Localhost) Open Graph Tester
+- Localhost Open Graph Tester
 - (MetaMask)
 - (Rabby Wallet)
 - Raindrop.io
@@ -451,79 +453,98 @@ Now the GPG Key should be correctly configured.
 - Wave
 - What Font
 
-### VSCode Extensions
-
-- Auto Rename Tag
-- C/C++
-- EditorConfig
-- Error Lens
-- ESLint
-- Even Better TOML
-- GitLens
-- Material Icon Theme
-- Mintlify
-- One Dark Pro
-- Paste JSON as Code
-- Path Intellisence
-- PostCSS
-- Prettier
-- Pretty Typescript Errors
-- Project Manager
-- Pylance
-- Python
-- Remote - SSH
-- Remote Explorer
-- Ruff
-- SVG Preview
-- Tailwind CSS IntelliSense
-- Template String Converter
-- Todo Tree
-- Version Lens
-- YAML
-- Live Server
-
 ## Applications settings
 
 - **Built-in apps**
 
   - **Apple Mail**
-    - Add accounts
-    - Show most recent message at top
-    - Set “undo send delay”
+    - General
+      - Unread count > `All mailboxes`
+      - New message notification > `All mailboxes`
+    - Accounts > _Check and add accounts_
+    - Viewing
+      - Show most recent messages at top > `on`
+  - **Apple Contacts**
+    - General
+      - Sort by > `First Name`
+      - Address format > `France`
   - **Apple Calendar**
-    - Add accounts
-  - Apple Contacts
-    - Add accounts
+    - Default calendar > `Perso`
+    - Alerts (setup in all accounts)
+      - Events > `15 minutes before`
+      - All day events > `1 day before`
+  - **Find my**
+    - _Enable, setup and check devices_
   - **iMessage**
-    - Sync iCloud for iMessages just for the sake of syncing, then disable iCloud again
-    - Sync contacts on iCloud
-    - iPhone: activate message forwarding to new Mac
+    - _Sync iCloud for iMessages just for the sake of syncing, then disable iCloud again_
+    - _Sync contacts on iCloud_
+    - _iPhone: activate message forwarding to new Mac_
   - **Notes**
-    - New notes start with: Body
-    - Settings -> Disable: Group notes by date
+    - New notes start with: `Body`
+    - Settings > Group notes by date > `off`
 
 - **Other apps**
+
+  - **Raycast**
+    - _Import settings from dotfiles_
+  - **Bitwarden**
+    - _Connect to Bitwarden account_
+    - Vault timeout > `On system lock`
+    - Vault timeout action > `Lock`
+    - Unlock with pin > `on`
+    - Unlock with Touch ID > `on`
+    - Ask for touch ID on app start > `on`
+    - Allow browser integration > `on`
+    - Require verification for browser integration > `on`
+  - **Brave Browser / Chrome**
+    - _Add to sync chain_
+  - **Cursor**
+    - _Connect to cursor account_
   - **iTerm**
     - General > Settings > Load settings from a custom folder > `~/.config/iterm2`
-  - **Raycast**
-    - Import settings from dotfiles
-  - **Bitwarden**
-    - ..
-  - **Brave Browser / Chrome**
-    - Add extensions
-    - …
-  - Cursor / VSCode
-    - …
-  - **OrbStack**
-    - …
-  - Screaming Frog SEO
+  - **ChatGPT**
+    - _Connect to ChatGPT account_
+    - Show in menu bar > `Never`
+    - Enable Work with Apps > `off`
+    - Speech > Voice > `Spruce`
+    - Speech > Main Language > `French`
+  - **Notion**
+    - _Connect to Notion account_
+    - Preferences
+      - Show Notion in menu bar > `off`
+      - Cookie settings > Disable `Analytics` and `Marketing`
+  - **Todoist**
+    - _Connect to Todoist account_
+    - Général
+      - Langue > `Français`
+    - Avancé
+      - Afficher Todoist dans la barre de menu > `off`
+    - Thème
+      - Synchroniser le thème > `on`
+      - Mode sombre automatique > `on`
+  - **Raindrop**
+    - _Connect to Raindrop account_
+  - **Google Drive**
+    - _Connect to Google Drive account_
+  - **Spotify**
+    - _Connect to Spotify account_
+    - Streaming quality > `Very High`
+    - Download quality > `Very High`
+    - Auto adjust quality > `on`
+    - Display short looping visuals > `off`
+    - Open Spotify automatically > `off`
+  - **Screaming Frog SEO**
     - Set database folder
-  - Logi Options +
-    - …
-  - XCodes App
-    - …
-  - Raindrop
-    - …
-  - ImageOptim
-    - …
-  -
+  - **Android Studio**
+  - **XCodes**
+  - **Bruno**
+  - **Table Plus**
+  - **Logi Options +**
+  - **Mos**
+  - **CameraController**
+  - **ImageOptim**
+  - **TestFlight**
+  - **VLC**
+  - **IPTVNator**
+  - **Transmission**
+  - **SwipeAeroSpace**
