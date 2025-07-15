@@ -2155,7 +2155,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>CommitMonoNF-Regular 14</string>
+			<string>CommitMonoNF-Regular 13</string>
 			<key>Only The Default BG Color Uses Transparency</key>
 			<false/>
 			<key>Open Password Manager Automatically</key>
@@ -2433,7 +2433,7 @@
 			<key>Terminal Type</key>
 			<string>xterm-256color</string>
 			<key>Thin Strokes</key>
-			<integer>4</integer>
+			<integer>0</integer>
 			<key>Title Components</key>
 			<integer>390</integer>
 			<key>Transparency</key>
@@ -2465,9 +2465,9 @@
 			<key>Use Selected Text Color</key>
 			<false/>
 			<key>Use Selected Text Color (Dark)</key>
-			<false/>
+			<true/>
 			<key>Use Selected Text Color (Light)</key>
-			<false/>
+			<true/>
 			<key>Use Separate Colors for Light and Dark Mode</key>
 			<true/>
 			<key>Use Tab Color (Dark)</key>
@@ -2479,7 +2479,7 @@
 			<key>Use Underline Color (Light)</key>
 			<false/>
 			<key>Vertical Spacing</key>
-			<real>1.1499999999999999</real>
+			<real>1.5</real>
 			<key>Visual Bell</key>
 			<true/>
 			<key>Window Type</key>
