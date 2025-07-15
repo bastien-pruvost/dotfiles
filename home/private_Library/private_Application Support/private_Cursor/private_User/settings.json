@@ -4,12 +4,11 @@
   // Theme
   "window.autoDetectColorScheme": true,
   "workbench.colorTheme": "GitHub Light Default",
-  "workbench.preferredLightColorTheme" : "GitHub Light Default",
+  "workbench.preferredLightColorTheme": "GitHub Light Default",
   "workbench.preferredDarkColorTheme": "GitHub Dark Dimmed",
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react",
   "material-icon-theme.saturation": 0.75,
-
 
   // Typography
   "editor.fontFamily": "CommitMono Nerd Font, Menlo, Monaco, Courier New, monospace",
@@ -46,9 +45,8 @@
   "javascript.suggest.autoImports": true,
 
   // Core
-    "editor.linkedEditing": true,
-
-    "security.promptForLocalFileProtocolHandling": false,
+  "editor.linkedEditing": true,
+  "security.promptForLocalFileProtocolHandling": false,
 
   // Terminal
   "terminal.integrated.defaultProfile.osx": "zsh",
@@ -79,7 +77,6 @@
     "**/__pycache__": true
   },
   "telemetry.telemetryLevel": "off",
-
 
   // Suggestions
   // "editor.quickSuggestions": {
@@ -193,10 +190,10 @@
   // ----- Languages override -----
 
   "[c]": {
-    "editor.defaultFormatter": "ms-vscode.cpptools"
+    "editor.defaultFormatter": "anysphere.cpptools"
   },
   "[cpp]": {
-    "editor.defaultFormatter": "ms-vscode.cpptools"
+    "editor.defaultFormatter": "anysphere.cpptools"
   },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
@@ -206,8 +203,7 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
-  },
+  }
 
   // --- Unsorted ---
-
 }
