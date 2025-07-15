@@ -29,13 +29,19 @@ export HOMEBREW_INSTALL_BADGE="✓"
 export PATH="/opt/homebrew/bin:$PATH"
 export PATH="$BREW_PREFIX/sbin:$PATH"
 
+# Mise
+export MISE_NODE_COREPACK=true
+
 # SQLite
 export SQLITE_HISTORY="$XDG_STATE_HOME/sqlite_history"
 
-# -------- Global Configuration --------
-
 # Custom scripts path
 export PATH="$SCRIPTS:$PATH"
+
+# -------- Global Configuration --------
+
+# Locale
+export LANG="en_US.UTF-8"
 
 # Editor
 if [[ -n "$SSH_CONNECTION" ]]; then
@@ -43,9 +49,6 @@ if [[ -n "$SSH_CONNECTION" ]]; then
 else
   export EDITOR="cursor"
 fi
-
-# Locale
-export LANG="en_US.UTF-8"
 
 # -------- Shell (Zsh) configuration --------
 
@@ -56,20 +59,6 @@ mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
 export POWERLEVEL10K_CONFIG_FILE="$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh"
 [[ -f "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
 [[ -f "$POWERLEVEL10K_CONFIG_FILE" ]] && source "$POWERLEVEL10K_CONFIG_FILE"
-
-# History
-HISTFILE="$XDG_STATE_HOME/zsh/history"
-HISTSIZE=50000
-SAVEHIST=10000
-HISTDUP=erase
-setopt appendhistory
-setopt incappendhistory
-setopt share_history
-setopt hist_expire_dups_first
-setopt hist_ignore_all_dups
-setopt hist_ignore_space
-setopt hist_save_no_dups
-setopt hist_verify
 
 # Completion
 autoload -Uz compinit
@@ -87,9 +76,25 @@ unsetopt menu_complete
 unsetopt flowcontrol
 bindkey "^I" expand-or-complete
 
-# Zsh Syntax Highlighting
-ZSH_SYNTAX_HIGHLIGHTING_FILE="$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-[[ -f "$ZSH_SYNTAX_HIGHLIGHTING_FILE" ]] && source "$ZSH_SYNTAX_HIGHLIGHTING_FILE"
+# History
+HISTFILE="$XDG_STATE_HOME/zsh/history"
+HISTSIZE=50000
+SAVEHIST=10000
+HISTDUP=erase
+setopt appendhistory
+setopt incappendhistory
+setopt share_history
+setopt hist_expire_dups_first
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_save_no_dups
+setopt hist_verify
+
+# Fuzzy Finder (fzf)
+if command -v fzf >/dev/null; then
+  source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
+  source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
+fi
 
 # Zsh History Substring Search
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND=false
@@ -99,13 +104,9 @@ ZSH_HISTORY_SUBSTRING_SEARCH_FILE="$BREW_PREFIX/share/zsh-history-substring-sear
 bindkey "^[[A" history-substring-search-up
 bindkey "^[[B" history-substring-search-down
 
-# Fuzzy Finder (fzf)
-if command -v fzf >/dev/null; then
-  source "$BREW_PREFIX/opt/fzf/shell/completion.zsh"
-  source "$BREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
-fi
-
-
+# Zsh Syntax Highlighting
+ZSH_SYNTAX_HIGHLIGHTING_FILE="$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+[[ -f "$ZSH_SYNTAX_HIGHLIGHTING_FILE" ]] && source "$ZSH_SYNTAX_HIGHLIGHTING_FILE"
 
 # -------- Aliases --------
 
