@@ -57,16 +57,6 @@ default-root-container-orientation = 'auto'
 # on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 # on-focus-changed = ['move-mouse window-lazy-center']
 
-# on-focus-changed = [
-#   "exec-and-forget osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-index-jsx\"'",
-# ]
-
-# exec-on-workspace-change = [
-#   '/bin/zsh',
-#   '-c',
-#   '/usr/bin/osascript -e "tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-index-jsx\""',
-# ]
-
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
 # Useful if you don't use this macOS feature, but accidentally hit cmd-h or cmd-alt-h key
 # Also see: https://nikitabobko.github.io/AeroSpace/goodness#disable-hide-app
@@ -80,12 +70,12 @@ automatically-unhide-macos-hidden-apps = true
 #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
 #                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
 [gaps]
-inner.horizontal = 10
-inner.vertical = 10
-outer.left = 10
-outer.bottom = 10
-outer.top = 10
-outer.right = 10
+inner.horizontal = 8
+inner.vertical = 8
+outer.left = 8
+outer.bottom = 8
+outer.top = 8
+outer.right = 8
 
 # Possible values: (qwerty|dvorak)
 # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
@@ -112,7 +102,7 @@ equal = 'slash'
 # backslash = '' # Not used in AZERTY FR
 
 [exec.env-vars]
-    PATH = '/opt/homebrew/bin:/usr/local/bin:${PATH}'
+PATH = '/opt/homebrew/bin:/usr/local/bin:${PATH}'
 
 [exec]
 inherit-env-vars = true
@@ -149,8 +139,11 @@ ctrl-shift-up = 'move up'
 ctrl-shift-right = 'move right'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
-ctrl-left = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace workspace prev'''
-ctrl-right = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace workspace next'''
+# ctrl-left = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace workspace prev'''
+# ctrl-right = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace workspace next'''
+
+ctrl-left = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace list-workspaces --monitor focused --empty no | aerospace workspace prev'''
+ctrl-right = '''exec-and-forget aerospace workspace "$(aerospace list-workspaces --monitor mouse --visible)" && aerospace list-workspaces --monitor focused --empty no | aerospace workspace next'''
 
 # Previous and next monitor
 # ctrl-up = 'focus-monitor prev --wrap-around'
@@ -249,32 +242,51 @@ r = ['flatten-workspace-tree', 'mode main'] # reset layout
 
 # Web Browser = 1
 [[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser' # Arc
-if.window-title-regex-substring = '^.+$' # Any non empty window title (not extensions)
-check-further-callbacks = true
-run = 'move-node-to-workspace 1'
+if.app-id = 'com.brave.Browser'          # Brave Browser
+if.window-title-regex-substring = '^.+$' # Non empty title (not extension)
+run = ['move-node-to-workspace 1']
 
-# Code/IDE = 2
 [[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode' # VSCode
-run = 'move-node-to-workspace 2'
+if.app-id = 'com.google.Chrome'          # Chrome Browser
+if.window-title-regex-substring = '^.+$' # Non empty title (not extension)
+run = ['move-node-to-workspace 1']
 
+# Code Editor = 2
 [[on-window-detected]]
 if.app-id = 'com.todesktop.230313mzl4w4u92' # Cursor
-run = 'move-node-to-workspace 2'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'com.microsoft.VSCode' # VSCode
+run = ['move-node-to-workspace 2']
 
 # Terminal = 3
 [[on-window-detected]]
-if.app-id = 'com.googlecode.iterm2' # iTerm2
-run = 'move-node-to-workspace 3'
+if.app-id = 'com.googlecode.iterm2' # iTerm
+run = ['move-node-to-workspace 3']
 
 # Dev Tools = 4
 [[on-window-detected]]
-if.app-id = 'com.usebruno.app'   # Bruno
-run = 'move-node-to-workspace 4'
+if.app-id = 'com.usebruno.app'     # Bruno
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyapp.TablePlus'      # TablePlus
+if.window-title-regex-substring = '^.+$' # Not home page
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.figma.Desktop'    # Figma
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
+if.app-id = 'com.canva.CanvaDesktop' # Canva
+run = ['move-node-to-workspace 4']
 
 # Misc = 5
-#
+[[on-window-detected]]
+if.app-id = 'com.openai.chat'      # ChatGPT
+run = ['move-node-to-workspace 5']
 
 # Secondary screen
 
@@ -286,34 +298,30 @@ run = 'move-node-to-workspace 8'
 # Productivity = 9
 [[on-window-detected]]
 if.app-id = 'com.todoist.mac.Todoist' # Todoist
-run = 'move-node-to-workspace 9'
+run = ['move-node-to-workspace 9']
 
 [[on-window-detected]]
-if.app-id = 'com.apple.iCal'     # Calendar
-run = 'move-node-to-workspace 9'
+if.app-id = 'com.apple.iCal'       # Calendar
+run = ['move-node-to-workspace 9']
 
+# Live Conference = L
 [[on-window-detected]]
-if.app-name-regex-substring = 'Notion Calendar' # Notion Calendar
-run = 'move-node-to-workspace 9'
-
-# Conference = L
-[[on-window-detected]]
-if.app-id = 'com.hnc.Discord'    # Discord
-run = 'move-node-to-workspace L'
+if.app-id = 'com.hnc.Discord'      # Discord
+run = ['move-node-to-workspace L']
 
 # Messaging = M
 [[on-window-detected]]
-if.app-id = 'Mattermost.Desktop' # Mattermost
-run = 'move-node-to-workspace M'
+if.app-id = 'Mattermost.Desktop'   # Mattermost
+run = ['move-node-to-workspace M']
 
 [[on-window-detected]]
-if.app-id = 'com.apple.mail'     # Mail
-run = 'move-node-to-workspace M'
+if.app-id = 'com.apple.mail'       # Mail
+run = ['move-node-to-workspace M']
 
 # Medias = P
 [[on-window-detected]]
-if.app-id = 'com.spotify.client' # Spotify
-run = 'move-node-to-workspace P'
+if.app-id = 'com.spotify.client'   # Spotify
+run = ['move-node-to-workspace P']
 
 [[on-window-detected]]
 if.app-id = 'org.videolan.vlc'                      # VLC
@@ -321,46 +329,31 @@ run = ['layout tiling', 'move-node-to-workspace P']
 
 # Floating windows
 
-# [[on-window-detected]]
-# check-further-callbacks = true
-# run = 'layout floating'
-
 [[on-window-detected]]
-if.app-id = 'com.apple.finder' # Finder
+check-further-callbacks = true
 run = ['layout floating']
 
 [[on-window-detected]]
-if.app-id = 'com.bitwarden.desktop' # Bitwarden
-run = ['layout floating']
-
-[[on-window-detected]]
-if.app-id = 'company.thebrowser.Browser'      # Browser extension
+if.app-id = 'com.brave.Browser'               # Browser extension
 if.window-title-regex-substring = 'Bitwarden' # Bitwarden
 run = ['layout floating']
-
-# Raindrop
-[[on-window-detected]]
-if.app-id = 'io.raindrop.macapp'
-run = ['layout floating']
-
 
 # Important : Keep at the end of the file for switching preset script to work
 
 # Assign workspaces to monitors
 [workspace-to-monitor-force-assignment]
-# Home
 1 = ['main']
 2 = ['main']
 3 = ['main']
 4 = ['main']
 5 = ['main']
-6 = ['secondary']
-7 = ['secondary']
-8 = ['secondary']
-9 = ['secondary']
-L = ['secondary']
-M = ['secondary']
-P = ['secondary']
+6 = ['secondary', 'main']
+7 = ['secondary', 'main']
+8 = ['secondary', 'main']
+9 = ['secondary', 'main']
+L = ['secondary', 'main']
+M = ['secondary', 'main']
+P = ['secondary', 'main']
 
 # Work
 # 1 = [1]
