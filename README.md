@@ -178,10 +178,18 @@ This README is an opinionated guide to install a clean MacOS development environ
     - Point & Click
       - Tracking speed > `7/9`
       - Click > `Light`
+      - Force Click & haptic feedback > `off`
       - Look up & data detectors > `off`
       - Tap to Click > `on`
     - Scroll & Zoom
       - Smart zoom > `off`
+      - Natural Scrolling > `on`
+  - **Mouse**
+    - Scroll speed > `4/9`
+    - Natural Scrolling > `on`
+    - Scrolling speed > `4/9`
+    - Advanced
+      - Pointer acceleration > `off`
 - **Finder > Settings**
   - General
     - Show these items on the desktop: _disable all_
@@ -484,9 +492,35 @@ Now the GPG Key should be correctly configured.
     - Settings > Group notes by date > `off`
 
 - **Other apps**
-
+  - **Logi Options + Mouse**
+    - Buttons
+      - Wheel button > `Middle button`
+      - Top button > `Shift wheel mode`
+      - Thumb wheel > `Horizontal scroll`
+      - Forward button > `Forward`
+      - Back button > `Back`
+      - Thumb button > `Gestures` > `Window navigation`
+    - Point and Scroll
+      - Pointer
+        - Pointer speed > `65%`
+      - Scroll wheel
+        - Scroll speed > `50%`
+        - Scroll direction > `Standard`
+        - Smooth scrolling > `Off`
+        - Smart Shift > `On`
+      - Thumb wheel
+        - Speed > `75%`
+        - Scroll direction > `Inverted`
+  - **SwipeAeroSpace**
+    - Swipe treshold > `0.15`
+    - Number of fingers > `3`
+    - Natural swipe > `on`
+    - Skip empty workspaces > `on`
+    - Launch at login > `on`
+  - **Mos**
+    - _Check settings imported from dotfiles_
   - **Raycast**
-    - _Import settings from dotfiles_
+    - _Import settings from dotfiles in Raycast settings_
   - **Bitwarden**
     - _Connect to Bitwarden account_
     - Vault timeout > `On system lock`
@@ -539,12 +573,9 @@ Now the GPG Key should be correctly configured.
   - **XCodes**
   - **Bruno**
   - **Table Plus**
-  - **Logi Options +**
-  - **Mos**
   - **CameraController**
   - **ImageOptim**
   - **TestFlight**
   - **VLC**
   - **IPTVNator**
   - **Transmission**
-  - **SwipeAeroSpace**
