@@ -6,7 +6,7 @@
 set -eufo pipefail
 
 # Path to your Brewfile
-BREWFILE="$DOTFILES/Brewfile"
+BREWFILE="$HOME/Brewfile"
 
 # Extract taps, brews, and casks from the Brewfile
 BREWFILE_TAPS=$(grep '^tap ' "$BREWFILE" | awk '{print $2}' | tr -d '"') || echo "No taps found"
