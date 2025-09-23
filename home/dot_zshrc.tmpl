@@ -1,3 +1,6 @@
+# Fix zsh issue in Cursor IDE
+# [[ "$COMPOSER_NO_INTERACTION" == "1" ]] && return
+
 # -------- Pre-Initialization --------
 
 # Powerlevel10k instant prompt (must be at the top)
@@ -26,7 +29,7 @@ export PATH="$ANDROID_HOME/emulator:$PATH"
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_INSTALL_BADGE="✓"
-export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$BREW_PREFIX/bin:$PATH"
 export PATH="$BREW_PREFIX/sbin:$PATH"
 
 # Mise
@@ -53,7 +56,7 @@ fi
 # -------- Shell (Zsh) configuration --------
 
 # Create directories if they don't exist
-mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh"
+mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh" "$XDG_DATA_HOME/zsh/completions"
 
 # Powerlevel10k theme
 export POWERLEVEL10K_CONFIG_FILE="$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh"
@@ -61,10 +64,11 @@ export POWERLEVEL10K_CONFIG_FILE="$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh"
 [[ -f "$POWERLEVEL10K_CONFIG_FILE" ]] && source "$POWERLEVEL10K_CONFIG_FILE"
 
 # Completion
+fpath=("$XDG_DATA_HOME/zsh/completions" "$BREW_PREFIX/share/zsh-completions" $fpath)
 autoload -Uz compinit
 compinit -u -d "$XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION"
 zstyle ":completion:*" cache-path "$XDG_CACHE_HOME/zsh/zcompcache"
-zstyle ":completion:*" menu select
+zstyle ":completion:*" menu select=2
 zstyle ":completion:*" list-rows-first false
 zstyle ":completion:*" list-packed false
 zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS:-}"
@@ -79,11 +83,11 @@ bindkey "^I" expand-or-complete
 # History
 HISTFILE="$XDG_STATE_HOME/zsh/history"
 HISTSIZE=50000
-SAVEHIST=10000
+SAVEHIST=50000
 HISTDUP=erase
 setopt appendhistory
-setopt incappendhistory
-setopt share_history
+unsetopt incappendhistory
+unsetopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
@@ -111,10 +115,10 @@ ZSH_SYNTAX_HIGHLIGHTING_FILE="$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syn
 # -------- Aliases --------
 
 # Navigation aliases
-alias ...='../..'
-alias ....='../../..'
-alias .....='../../../..'
-alias ......='../../../../..'
+alias ...="../.."
+alias ....="../../.."
+alias .....="../../../.."
+alias ......="../../../../.."
 
 # Git cleanup aliases
 alias cleanupbranches="delete-local-only-git-branches.sh"
@@ -130,25 +134,24 @@ alias stopphp="stop-php-services.sh"
 alias ip="ipconfig getifaddr en0 || ipconfig getifaddr en1"
 
 # Config files aliases
-alias gitconfig="code ~/.gitconfig"
-alias zshconfig="code ~/.zshrc"
 alias zshsource="source ~/.zshrc"
-alias sshconfig="code ~/.ssh/config"
-alias sshfolder="cd ~/.ssh"
-alias hostsconfig="code /etc/hosts"
+alias sshconfig="$EDITOR ~/.ssh/config"
+alias hostsconfig="$EDITOR /etc/hosts"
 alias hostconfig="hostsconfig"
-alias vhostsconfig="code /usr/local/etc/httpd/extra/httpd-vhosts.conf"
+alias vhostsconfig="$EDITOR $BREW_PREFIX/etc/httpd/extra/httpd-vhosts.conf"
 alias vhostconfig="vhostsconfig"
 alias httpdhostsconfig="vhostsconfig"
 alias httpdhostconfig="vhostsconfig"
-alias httpdconfig="code /usr/local/etc/httpd/httpd.conf"
-alias dnsmasqconfig="code /usr/local/etc/dnsmasq.conf"
+alias httpdconfig="$EDITOR $BREW_PREFIX/etc/httpd/httpd.conf"
+alias dnsmasqconfig="$EDITOR $BREW_PREFIX/etc/dnsmasq.conf"
 
 # Sublime Text alias
 alias sublime="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl --new-window $@"
 
 # Better SQLite shell alias
-alias sqlite3="rlwrap sqlite3"
+if command -v rlwrap >/dev/null; then
+  alias sqlite3="rlwrap sqlite3"
+fi
 
 # -------- Post-Initialization --------
 

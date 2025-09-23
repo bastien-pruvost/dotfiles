@@ -140,10 +140,10 @@ This README is an opinionated guide to install a clean MacOS development environ
   - **Sound**
     - Play sound on startup > `off`
   - **Lock Screen**
-    - Screen saver > `2 minutes`
-    - Display off on battery > `2 minutes`
+    - Screen saver > `5 minutes`
+    - Display off on battery > `5 minutes`
     - Display off on power > `10 minutes`
-    - Require password after > `5 minutes`
+    - Require password after > `15 minutes`
     - Show large clock > `On Screen saver and Lock screen`
   - **Privacy & Security**
     - Location Services
@@ -514,9 +514,33 @@ Now the GPG Key should be correctly configured.
   - **SwipeAeroSpace**
     - Swipe treshold > `0.15`
     - Number of fingers > `3`
+    - Wrap workspaces > `off`
     - Natural swipe > `on`
     - Skip empty workspaces > `on`
     - Launch at login > `on`
+  - **Ice**
+    - General
+      - Launch at login > `on`
+      - Show Ice icon > `on`
+      - Ice icon > `Chevron`
+      - Use Ice Bar > `off`
+      - Show on click, hover, scroll > `off`
+      - Automatically rehide > `on`
+      - Strategy > `Smart`
+    - Menu Bar Appearance
+      - Tint > `Solid - Magnesium`
+      - Shadow > `off`
+      - Border > `off`
+      - Menu Bar Shape > `Split - Rounded - Rounded`
+      - Use inset shape with notch > `on`
+    - Advanced
+      - Hide apps menus when showing menu bar items > `on`
+      - Show section dividers > `off`
+      - Show all when Cmd + Dragging items > `on`
+      - Enable always-hidden section > `off`
+    - Updates
+      - Automatically check for updates > `on`
+      - Automatically download updates > `off`
   - **Mos**
     - _Check settings imported from dotfiles_
   - **Raycast**

@@ -6,7 +6,7 @@ args = [
 ]
 
 {{ "" }}
-{{/* boolean feature tags */}}
+{{/* boolean feature flags */}}
 {{- $is_ephemeral_device := false -}} {{- /* true if this machine is ephemeral, e.g. a cloud or VM instance */}}
 {{- $is_headless_device := false -}} {{- /* true if this machine does not have a screen and keyboard */}}
 {{- $is_personal_device := false -}} {{- /* true if this machine should have personal secrets */}}
@@ -63,9 +63,9 @@ args = [
 {{-   $is_work_device = false -}}
 {{- end -}}
 
-{{- $full_name := promptStringOnce . "full_name" "What is your full name?" -}}
-{{- $personal_email := promptStringOnce . "personal_email" "What is your personal email?" -}}
-{{- $work_email := promptStringOnce . "work_email" "What is your work email?" -}}
+{{- $full_name := promptStringOnce . "full_name" "What is your full name (for git config)?" -}}
+{{- $personal_email := promptStringOnce . "personal_email" "What is your personal email (for git config)?" -}}
+{{- $work_email := promptStringOnce . "work_email" "What is your work email (for git config)?" -}}
 {{ "" }}
 
 [data]
