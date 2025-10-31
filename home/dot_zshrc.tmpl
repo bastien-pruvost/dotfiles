@@ -3,10 +3,11 @@
 
 # -------- Pre-Initialization --------
 
-# Powerlevel10k instant prompt (must be at the top)
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# Powerlevel10k instant prompt (must be at the top) (only if not running in Cursor Agent)
+if [[ -z "$CURSOR_AGENT" ]]; then
+  [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]] && source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 
 # -------- XDG variables --------
 
@@ -58,10 +59,11 @@ fi
 # Create directories if they don't exist
 mkdir -p "$XDG_STATE_HOME/zsh" "$XDG_CACHE_HOME/zsh" "$XDG_DATA_HOME/zsh/completions"
 
-# Powerlevel10k theme
-export POWERLEVEL10K_CONFIG_FILE="$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh"
-[[ -f "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
-[[ -f "$POWERLEVEL10K_CONFIG_FILE" ]] && source "$POWERLEVEL10K_CONFIG_FILE"
+# Powerlevel10k theme (only if not running in Cursor Agent)
+if [[ -z "$CURSOR_AGENT" ]]; then
+  [[ -f "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]] && source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+  [[ -f "$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh" ]] && source "$XDG_CONFIG_HOME/powerlevel10k/p10k.zsh"
+fi
 
 # Completion
 fpath=("$XDG_DATA_HOME/zsh/completions" "$BREW_PREFIX/share/zsh-completions" $fpath)
