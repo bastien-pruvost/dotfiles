@@ -53,6 +53,7 @@ cask "xcodes-app"
 # Dev tools (CLI)
 brew "git"
 brew "mise"
+brew "opencode"
 
 # Mobile development (Apps)
 cask "android-studio"
@@ -113,14 +114,19 @@ cask "microsoft-teams"
 cask "spotify"
 cask "vlc"
 {{ if .is_personal_device }}
+brew "bandcamp-dl"
+# cask "iptvnator"
 cask "plex"
-cask "iptvnator"
 cask "transmission"
 {{ end }}
 
 # Mac App Store Applications
 mas "Bitwarden", id: 1352778147
 mas "TestFlight", id: 899247664
+{{ if .is_personal_device }}
+mas "iMovie", id: 408981434
+mas "Zen IPTV", id: 6458223193
+{{ end }}
 {{ if .is_work_device }}
 mas "Wireguard", id: 1451685025
 {{ end }}
