@@ -1,7 +1,5 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "autoupdate": false,
-  "theme": "one-dark",
-  "tui": { "scroll_speed": 2 },
-  "instructions": ["AGENTS.md"]
+  "theme": "one-dark"
 }
