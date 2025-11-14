@@ -1,7 +1,7 @@
 {
   "workbench.colorTheme": "One Dark Pro",
-  // "workbench.preferredLightColorTheme": "One Dark Pro",
-  // "workbench.preferredDarkColorTheme": "GitHub Dark",
+  // "workbench.preferredLightColorTheme": "Cursor Light",
+  // "workbench.preferredDarkColorTheme": "Cursor Dark",
   // "window.autoDetectColorScheme": true,
   "workbench.iconTheme": "material-icon-theme",
   "material-icon-theme.activeIconPack": "react",
@@ -95,6 +95,8 @@
   // "editor.inlineSuggest.suppressSuggestions": true,
 
   // AI / Completions
+  "cursor.enable_agent_window_setting": false,
+  "cursor.cpp.enablePartialAccepts": true,
   "cursor.cpp.disabledLanguages": [],
   "cursor.composer.collapsePaneInputBoxPills": true,
   "cursor.composer.shouldAllowCustomModes": true,
@@ -181,6 +183,13 @@
   "tailwindCSS.emmetCompletions": true,
   "tailwindCSS.classFunctions": ["cva", "cn", "cs", "clsx", "twMerge"],
 
+  // SQLTools
+  "sqltools.useNodeRuntime": true,
+  "sqltools.format": {
+    "language": "sql",
+    "linesBetweenQueries": 2
+  },
+
   // ----- Language specific -----
 
   // Javascript
@@ -213,6 +222,15 @@
   "[cpp]": {
     "editor.defaultFormatter": "anysphere.cpptools"
   },
+  "[dockercompose]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
+  },
   "[python]": {
     "editor.defaultFormatter": "charliermarsh.ruff"
   },
@@ -224,6 +242,9 @@
   },
   "[yaml]": {
     "editor.defaultFormatter": "redhat.vscode-yaml"
-  }
+  },
+
   // --- Unsorted ---
+
+  "gitlens.graph.layout": "editor"
 }
