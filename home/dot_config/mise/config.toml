@@ -1,11 +1,10 @@
 [tools]
-java = "zulu-21"
-node = "22"
-pnpm = "10"
-python = "3.12"
-sqlite = "3"
-usage = "latest"
-yarn = "4"
+"java" = "zulu-21"
+"node" = "22"
+"python" = "3.13"
+"sqlite" = "3"
+"usage" = "latest"
+"npm:vercel" = "latest"
 
 [hooks]
 postinstall = "corepack enable"
